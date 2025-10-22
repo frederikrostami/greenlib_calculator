@@ -379,7 +379,7 @@
             <div id="canada-section" class="scenario-section active">
                 <div class="info-box">
                     <h4>Canadian Domestic Processing</h4>
-                    <p>Black mass processed domestically in Canada. Export route pays limited payability on Ni/Co only. GreenLIB captures full value of all metals with no tariff exposure.</p>
+                    <p>Black mass processed domestically in Canada. Export route pays 55-70% on Ni/Co only. GreenLIB pays 90% on Ni/Co and recovers all other metals currently lost in export routes with no tariff exposure.</p>
                 </div>
                 
                 <div class="input-section">
@@ -474,7 +474,7 @@
                         <div class="input-group">
                             <label>Export Payability (Ni/Co only)</label>
                             <input type="number" id="ca-export-payability" value="55" min="0" max="100">
-                            <div class="input-help">% of Ni/Co value paid</div>
+                            <div class="input-help">% of Ni/Co value paid (typically 55-70%)</div>
                         </div>
                         <div class="input-group">
                             <label>Export Transport Cost</label>
@@ -484,7 +484,7 @@
                         <div class="input-group">
                             <label>GreenLIB Payability</label>
                             <input type="number" id="ca-greenlib-payability" value="90" min="0" max="100">
-                            <div class="input-help">% on purified oxide</div>
+                            <div class="input-help">% on Ni/Co purified oxide</div>
                         </div>
                         <div class="input-group">
                             <label>Processing Fee</label>
@@ -493,8 +493,12 @@
                         </div>
                         <div class="input-group">
                             <label>Capacity Reservation</label>
-                            <input type="number" id="ca-capacity-fee" value="100" min="0">
-                            <div class="input-help">$/t</div>
+                            <select id="ca-capacity-fee">
+                                <option value="100">Standard (14 days) - $100/t</option>
+                                <option value="120">Priority (10 days) - $120/t</option>
+                                <option value="150">Dedicated (7 days) - $150/t</option>
+                            </select>
+                            <div class="input-help">Service lane & turnaround time</div>
                         </div>
                         <div class="input-group">
                             <label>GreenLIB Transport</label>
@@ -540,7 +544,7 @@
                 <div id="ca-results" class="results"></div>
             </div>
             
-            <!-- US Scenario -->
+            <!-- US Scenarios -->
             <div id="us-section" class="scenario-section">
                 <div class="us-scenario-toggle">
                     <button class="scenario-btn active" onclick="selectUSScenario(1)">
@@ -554,7 +558,7 @@
                 <div id="us-scenario-1" class="us-scenario-content">
                     <div class="info-box">
                         <h4>Scenario 1: US Black Mass → Canada Processing → Return to US</h4>
-                        <p>Material processed under tolling arrangement and returned to US. CUSMA qualification determines tariff exposure (0% if qualified, 35-50% if not). Export alternative pays limited payability on Ni/Co only.</p>
+                        <p>Material processed under tolling arrangement and returned to US. CUSMA qualification determines tariff exposure (0% if qualified, 35-50% if not). Export alternative pays 55-70% on Ni/Co only. GreenLIB pays 90% on Ni/Co and recovers all other metals currently lost in export routes.</p>
                     </div>
                     
                     <div class="input-section">
@@ -649,7 +653,7 @@
                             <div class="input-group">
                                 <label>Export Payability (Ni/Co only)</label>
                                 <input type="number" id="us1-export-payability" value="55" min="0" max="100">
-                                <div class="input-help">% of Ni/Co value paid</div>
+                                <div class="input-help">% of Ni/Co value paid (typically 55-70%)</div>
                             </div>
                             <div class="input-group">
                                 <label>Export Transport Cost</label>
@@ -659,7 +663,7 @@
                             <div class="input-group">
                                 <label>GreenLIB Payability</label>
                                 <input type="number" id="us1-greenlib-payability" value="90" min="0" max="100">
-                                <div class="input-help">% on purified oxide</div>
+                                <div class="input-help">% on Ni/Co purified oxide</div>
                             </div>
                             <div class="input-group">
                                 <label>Processing Fee</label>
@@ -668,8 +672,12 @@
                             </div>
                             <div class="input-group">
                                 <label>Capacity Reservation</label>
-                                <input type="number" id="us1-capacity-fee" value="100" min="0">
-                                <div class="input-help">$/t</div>
+                                <select id="us1-capacity-fee">
+                                    <option value="100">Standard (14 days) - $100/t</option>
+                                    <option value="120">Priority (10 days) - $120/t</option>
+                                    <option value="150">Dedicated (7 days) - $150/t</option>
+                                </select>
+                                <div class="input-help">Service lane & turnaround time</div>
                             </div>
                             <div class="input-group">
                                 <label>GreenLIB Transport</label>
@@ -740,7 +748,7 @@
                 <div id="us-scenario-2" class="us-scenario-content" style="display:none;">
                     <div class="info-box">
                         <h4>Scenario 2: US Black Mass → Canada Processing → Sold in Canada</h4>
-                        <p>Processed materials sold to Canadian refineries/smelters with profit sharing. Zero tariff exposure, enhanced payability on all metals.</p>
+                        <p>Processed materials sold to Canadian refineries/smelters with profit sharing. Zero tariff exposure. Export route pays 55-70% on Ni/Co only. GreenLIB pays 90% on Ni/Co and recovers all other metals currently lost in export routes.</p>
                     </div>
                     
                     <div class="input-section">
@@ -835,7 +843,7 @@
                             <div class="input-group">
                                 <label>GreenLIB Payability</label>
                                 <input type="number" id="us2-greenlib-payability" value="90" min="0" max="100">
-                                <div class="input-help">% on purified oxide</div>
+                                <div class="input-help">% on Ni/Co purified oxide</div>
                             </div>
                             <div class="input-group">
                                 <label>Processing Fee</label>
@@ -844,8 +852,12 @@
                             </div>
                             <div class="input-group">
                                 <label>Capacity Reservation</label>
-                                <input type="number" id="us2-capacity-fee" value="100" min="0">
-                                <div class="input-help">$/t</div>
+                                <select id="us2-capacity-fee">
+                                    <option value="100">Standard (14 days) - $100/t</option>
+                                    <option value="120">Priority (10 days) - $120/t</option>
+                                    <option value="150">Dedicated (7 days) - $150/t</option>
+                                </select>
+                                <div class="input-help">Service lane & turnaround time</div>
                             </div>
                             <div class="input-group">
                                 <label>Profit Share to US Customer</label>
@@ -902,7 +914,7 @@
                             <div class="input-group">
                                 <label>Export Payability (Ni/Co only)</label>
                                 <input type="number" id="us2-export-payability" value="55" min="0" max="100">
-                                <div class="input-help">% of Ni/Co value paid</div>
+                                <div class="input-help">% of Ni/Co value paid (typically 55-70%)</div>
                             </div>
                             <div class="input-group">
                                 <label>Export Transport Cost</label>
@@ -922,7 +934,7 @@
             <div id="eu-section" class="scenario-section">
                 <div class="info-box">
                     <h4>European Customer: EU Black Mass → Canada Processing</h4>
-                    <p>Material shipped from EU to Canada. Export route pays 55% on Ni/Co only. GreenLIB pays 90% on ALL metals after high recovery rates. CETA provides zero-tariff access.</p>
+                    <p>Material shipped from EU to Canada. Export route pays 55-70% on Ni/Co only. GreenLIB pays 90% on Ni/Co and recovers all other metals currently lost in export routes. CETA provides zero-tariff access.</p>
                 </div>
                 
                 <div class="input-section">
@@ -1017,7 +1029,7 @@
                         <div class="input-group">
                             <label>Export Payability (Ni/Co only)</label>
                             <input type="number" id="eu-export-payability" value="55" min="0" max="100">
-                            <div class="input-help">% of Ni/Co value paid</div>
+                            <div class="input-help">% of Ni/Co value paid (typically 55-70%)</div>
                         </div>
                         <div class="input-group">
                             <label>Export Transport Cost</label>
@@ -1027,7 +1039,7 @@
                         <div class="input-group">
                             <label>GreenLIB Payability</label>
                             <input type="number" id="eu-greenlib-payability" value="90" min="0" max="100">
-                            <div class="input-help">% on purified oxide</div>
+                            <div class="input-help">% on Ni/Co purified oxide</div>
                         </div>
                         <div class="input-group">
                             <label>Processing Fee</label>
@@ -1036,8 +1048,12 @@
                         </div>
                         <div class="input-group">
                             <label>Capacity Reservation</label>
-                            <input type="number" id="eu-capacity-fee" value="100" min="0">
-                            <div class="input-help">$/t</div>
+                            <select id="eu-capacity-fee">
+                                <option value="100">Standard (14 days) - $100/t</option>
+                                <option value="120">Priority (10 days) - $120/t</option>
+                                <option value="150">Dedicated (7 days) - $150/t</option>
+                            </select>
+                            <div class="input-help">Service lane & turnaround time</div>
                         </div>
                         <div class="input-group">
                             <label>GreenLIB Transport</label>
@@ -1418,99 +1434,172 @@
         }
         
         function calculateUS2() {
+            // Get all commodity prices
             const niPrice = parseFloat(document.getElementById('us2-ni-price').value);
             const coPrice = parseFloat(document.getElementById('us2-co-price').value);
             const liPrice = parseFloat(document.getElementById('us2-li-price').value);
+            const graphitePrice = parseFloat(document.getElementById('us2-graphite-price').value);
+            const lifPrice = parseFloat(document.getElementById('us2-lif-price').value);
+            const alPrice = parseFloat(document.getElementById('us2-al-price').value);
+            const cuPrice = parseFloat(document.getElementById('us2-cu-price').value);
+            
+            // Get feed composition
             const niContent = parseFloat(document.getElementById('us2-ni-content').value) / 100;
             const coContent = parseFloat(document.getElementById('us2-co-content').value) / 100;
             const liContent = parseFloat(document.getElementById('us2-li-content').value) / 100;
+            const cContent = parseFloat(document.getElementById('us2-c-content').value) / 100;
+            const fContent = parseFloat(document.getElementById('us2-f-content').value) / 100;
+            const alContent = parseFloat(document.getElementById('us2-al-content').value) / 100;
+            const cuContent = parseFloat(document.getElementById('us2-cu-content').value) / 100;
             
+            // Get commercial terms
             const volume = parseFloat(document.getElementById('us2-volume').value);
             const greenlibPayability = parseFloat(document.getElementById('us2-greenlib-payability').value) / 100;
             const processingFee = parseFloat(document.getElementById('us2-processing-fee').value);
+            const capacityFee = parseFloat(document.getElementById('us2-capacity-fee').value);
             const profitSharePct = parseFloat(document.getElementById('us2-profit-share').value) / 100;
             const transport = parseFloat(document.getElementById('us2-transport').value);
             const basel = parseFloat(document.getElementById('us2-basel').value);
             
+            // Get recovery rates
+            const nicoRecovery = parseFloat(document.getElementById('us2-nico-recovery').value) / 100;
+            const liRecovery = parseFloat(document.getElementById('us2-li-recovery').value) / 100;
+            const cRecovery = parseFloat(document.getElementById('us2-c-recovery').value) / 100;
+            const fRecovery = parseFloat(document.getElementById('us2-f-recovery').value) / 100;
+            const alcuRecovery = parseFloat(document.getElementById('us2-alcu-recovery').value) / 100;
+            
+            // Get export alternative
             const exportPayability = parseFloat(document.getElementById('us2-export-payability').value) / 100;
             const exportTransport = parseFloat(document.getElementById('us2-export-transport').value);
             
+            // Conversion factors
             const liToLi2CO3 = 5.32;
+            const fToLiF = 1.365;
             
-            // GreenLIB route
-            const greenlibNiValue = niContent * 0.97 * greenlibPayability * niPrice;
-            const greenlibCoValue = coContent * 0.97 * greenlibPayability * coPrice;
-            const greenlibLiValue = liContent * 0.90 * liToLi2CO3 * liPrice;
-            const greenlibGrossValue = greenlibNiValue + greenlibCoValue + greenlibLiValue;
+            // GREENLIB ROUTE (All metals at high payability)
+            const greenlibNiValue = niContent * nicoRecovery * greenlibPayability * niPrice;
+            const greenlibCoValue = coContent * nicoRecovery * greenlibPayability * coPrice;
+            const greenlibLiValue = liContent * liRecovery * liToLi2CO3 * liPrice;
+            const greenlibGraphiteValue = cContent * cRecovery * graphitePrice;
+            const greenlibLiFValue = fContent * fRecovery * fToLiF * lifPrice;
+            const greenlibAlValue = alContent * alcuRecovery * alPrice;
+            const greenlibCuValue = cuContent * alcuRecovery * cuPrice;
             
-            const margin = greenlibGrossValue - processingFee - transport - basel;
-            const profitShare = margin * profitSharePct;
-            const customerNet = greenlibGrossValue - processingFee - transport - basel;
+            const greenlibGrossValue = greenlibNiValue + greenlibCoValue + greenlibLiValue + 
+                                      greenlibGraphiteValue + greenlibLiFValue + greenlibAlValue + greenlibCuValue;
             
-            // Export route
+            // Calculate net margin after all costs
+            const totalCosts = processingFee + capacityFee + transport + basel;
+            const netMargin = greenlibGrossValue - totalCosts;
+            
+            // Profit sharing: Customer receives their % of the net margin
+            const customerProfitShare = netMargin * profitSharePct;
+            const greenlibShare = netMargin * (1 - profitSharePct);
+            
+            // EXPORT ROUTE (Ni/Co only at limited payability)
             const exportNiValue = niContent * exportPayability * niPrice;
             const exportCoValue = coContent * exportPayability * coPrice;
             const exportNet = exportNiValue + exportCoValue - exportTransport;
             
-            const improvement = customerNet - exportNet;
+            const improvement = customerProfitShare - exportNet;
             const totalImprovement = improvement * volume;
-            const totalProfitShare = profitShare * volume;
+            const totalProfitShare = customerProfitShare * volume;
             
             const resultsHTML = `
                 <div class="info-box">
                     <h4>✓ Zero Tariff Exposure - Domestic Canadian Sales</h4>
-                    <p>Materials sold to Canadian refineries. US customer receives ${(profitSharePct * 100).toFixed(0)}% profit share. No tariff risk.</p>
+                    <p>Materials sold to Canadian refineries. US customer receives ${(profitSharePct * 100).toFixed(0)}% of net margin (${formatCurrency(customerProfitShare)}/t). GreenLIB receives ${((1 - profitSharePct) * 100).toFixed(0)}% (${formatCurrency(greenlibShare)}/t). Export route pays 55-70% on Ni/Co only. GreenLIB pays 90% on Ni/Co and recovers all other metals currently lost in export routes. No tariff risk.</p>
                 </div>
                 
                 <div class="comparison-cards">
                     <div class="result-card">
                         <h3>GreenLIB Profit-Sharing</h3>
                         <div class="metric">
-                            <span class="metric-label">Ni/Co Value</span>
+                            <span class="metric-label">Ni/Co Value (${(nicoRecovery * 100).toFixed(0)}% × ${(greenlibPayability * 100).toFixed(0)}%)</span>
                             <span class="metric-value">${formatCurrency(greenlibNiValue + greenlibCoValue)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Li₂CO₃ Value</span>
+                            <span class="metric-label">Li₂CO₃ Value (${(liRecovery * 100).toFixed(0)}% rec)</span>
                             <span class="metric-value">${formatCurrency(greenlibLiValue)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Gross Value</span>
+                            <span class="metric-label">Graphite Value (${(cRecovery * 100).toFixed(0)}% rec)</span>
+                            <span class="metric-value">${formatCurrency(greenlibGraphiteValue)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">LiF Value (${(fRecovery * 100).toFixed(0)}% rec)</span>
+                            <span class="metric-value">${formatCurrency(greenlibLiFValue)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Al/Cu Value (${(alcuRecovery * 100).toFixed(0)}% rec)</span>
+                            <span class="metric-value">${formatCurrency(greenlibAlValue + greenlibCuValue)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Gross Product Value</span>
                             <span class="metric-value">${formatCurrency(greenlibGrossValue)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Processing Fee</span>
-                            <span class="metric-value">-${formatCurrency(processingFee)}/t</span>
+                            <span class="metric-label">Processing & Capacity Fees</span>
+                            <span class="metric-value">-${formatCurrency(processingFee + capacityFee)}/t</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">Transport & Basel</span>
                             <span class="metric-value">-${formatCurrency(transport + basel)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Profit Share (${(profitSharePct * 100).toFixed(0)}%)</span>
-                            <span class="metric-value">+${formatCurrency(profitShare)}/t</span>
+                            <span class="metric-label">Net Margin</span>
+                            <span class="metric-value">${formatCurrency(netMargin)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">US Customer Share (${(profitSharePct * 100).toFixed(0)}%)</span>
+                            <span class="metric-value">+${formatCurrency(customerProfitShare)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">GreenLIB Share (${((1 - profitSharePct) * 100).toFixed(0)}%)</span>
+                            <span class="metric-value">+${formatCurrency(greenlibShare)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">US Tariff</span>
+                            <span class="metric-value">$0.00 (None)</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">CUSTOMER NET</span>
-                            <span class="metric-value">${formatCurrency(customerNet)}/t</span>
+                            <span class="metric-value">${formatCurrency(customerProfitShare)}/t</span>
                         </div>
                     </div>
                     
                     <div class="result-card export">
                         <h3>Export to Asia</h3>
                         <div class="metric">
-                            <span class="metric-label">Ni/Co Value (${(exportPayability * 100).toFixed(0)}%)</span>
-                            <span class="metric-value">${formatCurrency(exportNiValue + exportCoValue)}/t</span>
+                            <span class="metric-label">Ni Value (${(exportPayability * 100).toFixed(0)}% payability)</span>
+                            <span class="metric-value">${formatCurrency(exportNiValue)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Li Value</span>
+                            <span class="metric-label">Co Value (${(exportPayability * 100).toFixed(0)}% payability)</span>
+                            <span class="metric-value">${formatCurrency(exportCoValue)}/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Li₂CO₃ Value</span>
                             <span class="metric-value">$0.00/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Gross Value</span>
+                            <span class="metric-label">Graphite Value</span>
+                            <span class="metric-value">$0.00/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">LiF Value</span>
+                            <span class="metric-value">$0.00/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Al/Cu Value</span>
+                            <span class="metric-value">$0.00/t</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Gross Product Value</span>
                             <span class="metric-value">${formatCurrency(exportNiValue + exportCoValue)}/t</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Ocean Freight</span>
+                            <span class="metric-label">Ocean Freight (CIF Busan)</span>
                             <span class="metric-value">-${formatCurrency(exportTransport)}/t</span>
                         </div>
                         <div class="metric">
@@ -1523,8 +1612,9 @@
                 <div class="savings-highlight">
                     <h2>Enhanced Value with GreenLIB</h2>
                     <div class="amount">${formatCurrency(improvement)} per tonne</div>
-                    <p>Total Annual Benefit: <strong>${formatCurrency(totalImprovement)}</strong> (${volume.toLocaleString()} tonnes)</p>
-                    <p>Includes Profit Sharing: <strong>${formatCurrency(totalProfitShare)}</strong> annually</p>
+                    <p>Total Annual Benefit to US Customer: <strong>${formatCurrency(totalImprovement)}</strong> (${volume.toLocaleString()} tonnes)</p>
+                    <p>Customer Receives (${(profitSharePct * 100).toFixed(0)}% profit share): <strong>${formatCurrency(totalProfitShare)}</strong> annually</p>
+                    <p>GreenLIB Receives (${((1 - profitSharePct) * 100).toFixed(0)}% profit share): <strong>${formatCurrency(greenlibShare * volume)}</strong> annually</p>
                 </div>
             `;
             
@@ -1597,7 +1687,7 @@
             const resultsHTML = `
                 <div class="info-box">
                     <h4>✓ CETA Zero-Tariff Access + Full Metal Recovery</h4>
-                    <p>Export route captures only ${(exportPayability * 100).toFixed(0)}% of Ni/Co. GreenLIB captures ${(greenlibPayability * 100).toFixed(0)}% of ALL metals.</p>
+                    <p>Export route captures 55-70% of Ni/Co only. GreenLIB captures 90% of Ni/Co and recovers all other metals (Li, Graphite, F, Al, Cu) currently lost in export routes.</p>
                 </div>
                 
                 <div class="comparison-cards">
