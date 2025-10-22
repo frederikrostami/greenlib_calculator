@@ -1606,12 +1606,12 @@ function calculateUS1() {
                 </div>` : ''}
                 
                 <div class="improvement-banner">
-                    <h2>💰 VALUE ENHANCEMENT WITH CUSMA ACCESS</h2>
+                    <h2>💰 VALUE ENHANCEMENT</h2>
                     <div class="improvement-amount">${formatCurrency(improvement)} per tonne</div>
                     <div class="improvement-details">
                         <p><strong>Total Annual Benefit:</strong> ${formatCurrency(totalImprovement)} (${formatCurrency(volume)} tonnes)</p>
                         <p><strong>Improvement:</strong> ${improvementPct.toFixed(1)}% vs Asia Export Route</p>
-                        <p><strong>Key Advantages:</strong> ${cusmaQualified ? 'CUSMA zero-tariff (no import duty from Canada) + ' : ''}Higher Ni/Co recovery (${(nicoRecovery * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery${!cusmaQualified ? ' (Note: CUSMA tariff applied to GreenLIB route)' : ''}</p>
+                        <p><strong>Key Advantages:</strong> ${cusmaQualified ? 'CUSMA zero-tariff (no import duty from Canada) + ' : ''}Higher Ni/Co payable (${(greenlibPayability * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery${!cusmaQualified ? ' (Note: CUSMA tariff applied to GreenLIB route)' : ''}</p>
                     </div>
                 </div>
                 
@@ -2187,12 +2187,12 @@ function calculateUS1() {
                 </div>
                 
                 <div class="improvement-banner">
-                    <h2>💰 VALUE ENHANCEMENT WITH CETA ACCESS</h2>
+                    <h2>💰 VALUE ENHANCEMENT</h2>
                     <div class="improvement-amount">${formatCurrency(improvement)} per tonne</div>
                     <div class="improvement-details">
                         <p><strong>Total Annual Benefit:</strong> ${formatCurrency(totalImprovement)} (${formatCurrency(volume)} tonnes)</p>
                         <p><strong>Improvement:</strong> ${improvementPct.toFixed(1)}% vs Asia Export Route</p>
-                        <p><strong>Key Advantages:</strong> CETA zero-tariff + Higher Ni/Co recovery (${(nicoRecovery * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery</p>
+                        <p><strong>Key Advantages:</strong> CETA zero-tariff + Higher Ni/Co payable (${(greenlibPayability * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery</p>
                     </div>
                 </div>
                 
