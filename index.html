@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenLIB Black Mass Financial Calculator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -170,7 +168,10 @@
             table-layout: fixed;
         }
         
-        .input-table thead { background: #14532D; color: #fff; }
+        .input-table thead {
+            background: #14532D;
+            color: white;
+        }
         
         .input-table th {
             padding: 16px;
@@ -341,6 +342,16 @@
             margin: 30px 0;
             box-shadow: 0 4px 20px rgba(20, 83, 45, 0.2);
         }
+        .tariff-banner {
+            background: #fff7ed;
+            border: 2px solid #fbbf24;
+            color: #78350f;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin: 16px 0;
+            font-weight: 700;
+        }
+
         
         .improvement-banner h2 {
             font-size: 24px;
@@ -440,7 +451,10 @@
             border-collapse: collapse;
         }
         
-        .projection-table thead { background: #14532D; color: #fff; }
+        .projection-table thead {
+            background: #14532D;
+            color: white;
+        }
         
         .projection-table th {
             padding: 14px;
@@ -648,41 +662,13 @@
         .calculate-btn:active {
             transform: translateY(0);
         }
-    
-/* Added styles */
-.tariff-banner {
-  background: #fff7ed;
-  border: 2px solid #fbbf24;
-  color: #78350f;
-  padding: 14px 16px;
-  border-radius: 10px;
-  margin: 16px 0;
-  font-weight: 700;
-}
-
-.toast {
-  background: #14532D;
-  color: #fff;
-  padding: 12px 16px;
-  margin-top: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  transition: all .3s ease;
-  font-weight: 700;
-}
-.toast.error { background: #7f1d1d; }
-.toast.info  { background: #1e40af; }
-
-/* Make hidden panels not consume layout */
-.section[hidden] { display: none !important; }
-
     </style>
 </head>
 <body>
     <!-- Top Header with Logo -->
     <div class="top-header">
         <div class="logo-container">
-            <img src="greenlib_calculator_assets/logo.png" alt="GreenLIB" class="logo-img" loading="lazy" decoding="async" width="160" height="40" style="height:40px;width:auto">
+            <img src="data:image/png;base64,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" alt="GreenLIB" class="logo-img">
             <div class="divider"></div>
             <div class="header-title">BLACK MASS FINANCIAL CALCULATOR</div>
         </div>
@@ -694,12 +680,13 @@
             <p>Compare realization values across processing routes with real-time adjustable inputs</p>
         </div>
         
-        <div class="tabs" role="tablist" aria-label="Scenario Tabs">
-    <button class="tab active" role="tab" aria-selected="true" aria-controls="us1" id="tab-us1" tabindex="0">US Scenario 1</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="us2" id="tab-us2" tabindex="-1">US Scenario 2</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="eu"  id="tab-eu"  tabindex="-1">EU Scenario</button>
-</div>
-<div class="content">
+        <div class="tabs" role="tablist">
+            <button class="tab active" role="tab" aria-selected="true" aria-controls="us1" id="tab-us1">US Scenario 1</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="us2" id="tab-us2">US Scenario 2</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="eu" id="tab-eu">EU Scenario</button>
+        </div>
+        
+        <div class="content">
             <!-- US Scenario 1 -->
             <div id="us1" class="section active" role="tabpanel" aria-labelledby="tab-us1">
                 <div class="section-title">METAL PRICES ($/t)</div>
@@ -772,19 +759,19 @@
                         <tr>
                             <td>Nickel (Ni)</td>
                             <td>10-25%</td>
-                            <td><input type="number" id="us1-ni-content" value="15" step="0.1"></td>
+                            <td><input type="number" id="us1-ni-content" value="15" step="0.1" min="0" max="100"></td>
                             <td>%</td>
                         </tr>
                         <tr>
                             <td>Cobalt (Co)</td>
                             <td>5-15%</td>
-                            <td><input type="number" id="us1-co-content" value="8" step="0.1"></td>
+                            <td><input type="number" id="us1-co-content" value="8" step="0.1" min="0" max="100"></td>
                             <td>%</td>
                         </tr>
                         <tr>
                             <td>Lithium (Li)</td>
                             <td>3-8%</td>
-                            <td><input type="number" id="us1-li-content" value="5" step="0.1"></td>
+                            <td><input type="number" id="us1-li-content" value="5" step="0.1" min="0" max="100"></td>
                             <td>%</td>
                         </tr>
                         <tr>
@@ -947,7 +934,7 @@
                 </table>
                 
                                 
-                <button class="calculate-btn" id="btn-us1">🔬 Calculate US Scenario 1</button>
+                <button class="calculate-btn" onclick="calculateUS1()">🔬 Calculate US Scenario 1</button>
                 
                 <div id="us1-results"></div>
             </div>
@@ -1174,7 +1161,7 @@
                 </table>
                 
                                 
-                <button class="calculate-btn" id="btn-us2">🔬 Calculate US Scenario 2</button>
+                <button class="calculate-btn" onclick="calculateUS2()">🔬 Calculate US Scenario 2</button>
                 
                 <div id="us2-results"></div>
             </div>
@@ -1395,551 +1382,991 @@
                 </table>
                 
                                 
-                <button class="calculate-btn" id="btn-eu">🔬 Calculate EU Scenario</button>
+                <button class="calculate-btn" onclick="calculateEU()">🔬 Calculate EU Scenario</button>
                 
                 <div id="eu-results"></div>
             </div>
         </div>
     </div>
 
-    
-<script>
-(() => {
-  'use strict';
+    <script>
+        // Tab switching with proper accessibility (no reliance on implicit event)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('aria-controls');
+                    
+                    // Deactivate all tabs
+                    document.querySelectorAll('.tab').forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                        t.setAttribute('tabindex', '-1');
+                    });
+                    
+                    // Hide all panels
+                    document.querySelectorAll('.section').forEach(p => {
+                        p.classList.remove('active');
+                        p.setAttribute('hidden', '');
+                    });
+                    
+                    // Activate selected tab
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    btn.removeAttribute('tabindex');
+                    
+                    // Show selected panel
+                    const panel = document.getElementById(id);
+                    panel.classList.add('active');
+                    panel.removeAttribute('hidden');
+                });
+            });
+        });
+        
+        // Safe number parsing with bounds checking
+        function num(id, { min = -Infinity, max = Infinity, fallback = 0 } = {}) {
+            let v = parseFloat(document.getElementById(id).value);
+            if (Number.isNaN(v) || v === null || v === undefined) v = fallback;
+            return Math.min(Math.max(v, min), max);
+        }
+        
+        // Better currency formatting
+        const fmtUSD = new Intl.NumberFormat('en-US', { 
+            style: 'currency', 
+            currency: 'USD', 
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0 
+        });
+        
+        function formatCurrency(value) {
+            if (Number.isNaN(value) || !Number.isFinite(value)) return '$0';
+            return fmtUSD.format(Math.round(value)).replace('$-', '-$');
+        }
+function calculateUS1() {
+            const niPrice = parseFloat(document.getElementById('us1-ni-price').value);
+            const coPrice = parseFloat(document.getElementById('us1-co-price').value);
+            const liPrice = parseFloat(document.getElementById('us1-li-price').value);
+            const graphitePrice = parseFloat(document.getElementById('us1-graphite-price').value);
+            const lifPrice = parseFloat(document.getElementById('us1-lif-price').value);
+            const alPrice = parseFloat(document.getElementById('us1-al-price').value);
+            const cuPrice = parseFloat(document.getElementById('us1-cu-price').value);
+            
+            const niContent = parseFloat(document.getElementById('us1-ni-content').value) / 100;
+            const coContent = parseFloat(document.getElementById('us1-co-content').value) / 100;
+            const liContent = parseFloat(document.getElementById('us1-li-content').value) / 100;
+            const cContent = parseFloat(document.getElementById('us1-c-content').value) / 100;
+            const fContent = parseFloat(document.getElementById('us1-f-content').value) / 100;
+            const alContent = parseFloat(document.getElementById('us1-al-content').value) / 100;
+            const cuContent = parseFloat(document.getElementById('us1-cu-content').value) / 100;
+            
+            const nicoRecovery = parseFloat(document.getElementById('us1-nico-recovery').value) / 100;
+            const liRecovery = parseFloat(document.getElementById('us1-li-recovery').value) / 100;
+            const cRecovery = parseFloat(document.getElementById('us1-c-recovery').value) / 100;
+            const fRecovery = parseFloat(document.getElementById('us1-f-recovery').value) / 100;
+            const alcuRecovery = parseFloat(document.getElementById('us1-alcu-recovery').value) / 100;
+            
+            const processingFee = parseFloat(document.getElementById('us1-processing-fee').value);
+            const capacityFee = parseFloat(document.getElementById('us1-capacity-fee').value);
+            const greenlibTransport = parseFloat(document.getElementById('us1-greenlib-transport').value);
+            const basel = 0; // Now included in all-in logistics and compliance
+            const exportTransport = parseFloat(document.getElementById('us1-export-transport').value);
+            const exportPayability = parseFloat(document.getElementById('us1-export-payability').value) / 100;
+            const greenlibPayability = parseFloat(document.getElementById('us1-greenlib-payability').value) / 100;
+            const volume = parseFloat(document.getElementById('us1-volume').value);
+            
+            const cusmaQualified = document.getElementById('us1-cusma-qualified').value === 'true';
+            const tariffRate = parseFloat(document.getElementById('us1-tariff-rate').value) / 100;
+            
+            // GreenLIB Calculations
+            const greenlibNiValue = niContent * nicoRecovery * greenlibPayability * niPrice;
+            const greenlibCoValue = coContent * nicoRecovery * greenlibPayability * coPrice;
+            const greenlibLiValue = liContent * liRecovery * 5.32 * liPrice; // 5.32 conversion factor Li to Li2CO3
+            const greenlibGraphiteValue = cContent * cRecovery * graphitePrice;
+            const greenlibLiFValue = fContent * fRecovery * 1.365 * lifPrice; // 1.365 conversion factor F to LiF
+            const greenlibAlValue = alContent * alcuRecovery * alPrice;
+            const greenlibCuValue = cuContent * alcuRecovery * cuPrice;
+            
+            const greenlibGrossValue = greenlibNiValue + greenlibCoValue + greenlibLiValue + greenlibGraphiteValue + greenlibLiFValue + greenlibAlValue + greenlibCuValue;
+            
+            // CUSMA Tariff applies when importing refined products back to US from Canada
+            const tariffAmount = cusmaQualified ? 0 : (greenlibGrossValue * tariffRate);
+            const greenlibNet = greenlibGrossValue - processingFee - capacityFee - greenlibTransport - basel - tariffAmount;
+            
+            // Export Calculations (No CUSMA tariff - going to Asia)
+            const exportNiValue = niContent * exportPayability * niPrice;
+            const exportCoValue = coContent * exportPayability * coPrice;
+            const exportNet = exportNiValue + exportCoValue - exportTransport;
+            
+            // Improvement
+            const improvement = greenlibNet - exportNet;
+            const totalImprovement = improvement * volume;
+            const improvementPct = exportNet > 0 ? (improvement / exportNet) * 100 : 0;
+            
+            const resultsHTML = `
+                <div class="section-title">COMPARATIVE ANALYSIS</div>
+                
+                <div class="results-grid">
+                    <div class="result-card greenlib">
+                        <div class="result-card-header">🔬 GREENLIB ROUTE (CUSMA ADVANTAGE)</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value (${(liRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibLiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value (${(cRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibGraphiteValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>LiF + Al/Cu Value</td>
+                                <td>${formatCurrency(greenlibLiFValue + greenlibAlValue + greenlibCuValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(greenlibGrossValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>-${formatCurrency(processingFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>-${formatCurrency(capacityFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>All-in logistics and compliance</td>
+                                <td>-${formatCurrency(greenlibTransport)}/t</td>
+                            </tr>
 
-  // ====== Formatters ======
-  const fmtUSD0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-  const fmtNUM0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-  const usd0 = (n) => fmtUSD0.format(Math.round(n || 0));
-  const num0 = (n) => fmtNUM0.format(Math.round(n || 0));
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(greenlibNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="result-card export">
+                        <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Other Metals</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(exportNiValue + exportCoValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>All-in logistics and compliance (CIF Asia)</td>
+                                <td>-${formatCurrency(exportTransport)}/t</td>
+                            </tr>
 
-  // ====== Safe numeric getters ======
-  function num(id, { min = -Infinity, max = Infinity, fallback = 0 } = {}) {
-    const el = document.getElementById(id);
-    let v = parseFloat(el && el.value);
-    if (Number.isNaN(v)) v = fallback;
-    if (!Number.isFinite(v)) v = fallback;
-    v = Math.min(Math.max(v, min), max);
-    if (el && el.value !== String(v)) el.value = v;
-    return v;
-  }
-  const pctVal = (id) => num(id, { min: 0, max: 100, fallback: 0 }) / 100;
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(exportNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                ${!cusmaQualified ? `<div class="tariff-banner">
+                    <strong>⚠️ CUSMA NOT QUALIFIED - TARIFF APPLIED TO GREENLIB ROUTE</strong>
+                    When importing refined products back to the US from Canada, a ${(tariffRate * 100).toFixed(0)}% tariff (${formatCurrency(tariffAmount)}/t) applies because the material does not qualify for CUSMA zero-tariff treatment. This tariff is included in the GreenLIB Net Realization above.
+                </div>` : ''}
+                
+                <div class="improvement-banner">
+                    <h2>💰 VALUE ENHANCEMENT WITH CUSMA ACCESS</h2>
+                    <div class="improvement-amount">${formatCurrency(improvement)} per tonne</div>
+                    <div class="improvement-details">
+                        <p><strong>Total Annual Benefit:</strong> ${formatCurrency(totalImprovement)} (${formatCurrency(volume)} tonnes)</p>
+                        <p><strong>Improvement:</strong> ${improvementPct.toFixed(1)}% vs Asia Export Route</p>
+                        <p><strong>Key Advantages:</strong> ${cusmaQualified ? 'CUSMA zero-tariff (no import duty from Canada) + ' : ''}Higher Ni/Co recovery (${(nicoRecovery * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery${!cusmaQualified ? ' (Note: CUSMA tariff applied to GreenLIB route)' : ''}</p>
+                    </div>
+                </div>
+                
+                <div class="esg-card">
+                    <h3>🌍 ESG IMPACT METRICS (LCA-VERIFIED)</h3>
+                    <div class="esg-grid">
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">🌱</div>
+                            <div class="esg-metric-value">-2,508 kg</div>
+                            <div class="esg-metric-label">Net CO₂ eq per tonne (Carbon Negative!)</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">⚡</div>
+                            <div class="esg-metric-value">439 kWh</div>
+                            <div class="esg-metric-label">Electricity per tonne processed</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">💧</div>
+                            <div class="esg-metric-value">&lt;1.0 m³</div>
+                            <div class="esg-metric-label">Net water consumption (90% recycled)</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">♻️</div>
+                            <div class="esg-metric-value">&lt;2%</div>
+                            <div class="esg-metric-label">Hazardous waste of input</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">🏭</div>
+                            <div class="esg-metric-value">${formatCurrency(volume * 2.508)} t</div>
+                            <div class="esg-metric-label">Annual CO₂ Avoided (${formatCurrency(volume)} tonnes/yr)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.9;">
+                        <strong>Water Efficiency:</strong> 90% internal recycling via filtration & condensation. Net consumption &lt;1.0 m³/t vs. 5-10 m³/t for typical hydromet.<br>
+                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation. Full details in Appendix I.
+                    </div>
+                </div>
+                
+                <div class="projection-card">
+                    <h3>📈 5-YEAR CUMULATIVE FINANCIAL PROJECTION</h3>
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Annual Volume (tonnes)</th>
+                                <th>Improvement per Tonne</th>
+                                <th>Annual Benefit</th>
+                                <th>Cumulative Benefit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Year 1</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 2</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 3</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 3)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 4</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 4)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 5</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 5)}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL 5-YEAR BENEFIT</strong></td>
+                                <td colspan="3"></td>
+                                <td><strong>${formatCurrency(totalImprovement * 5)}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="price-scenarios">
+                    <div class="scenario-card bear">
+                        <h4>🐻 BEAR CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $30,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $5,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(
+                                (niContent * nicoRecovery * greenlibPayability * 12000) +
+                                (coContent * nicoRecovery * greenlibPayability * 30000) +
+                                (liContent * liRecovery * 5.32 * 5000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel
+                            )}/t</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card base">
+                        <h4>📊 BASE CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: ${formatCurrency(niPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: ${formatCurrency(coPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: ${formatCurrency(liPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(greenlibNet)}/t</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card bull">
+                        <h4>🚀 BULL CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $20,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $55,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(
+                                (niContent * nicoRecovery * greenlibPayability * 20000) +
+                                (coContent * nicoRecovery * greenlibPayability * 55000) +
+                                (liContent * liRecovery * 5.32 * 12000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel
+                            )}/t</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('us1-results').innerHTML = resultsHTML;
+        }
+        
+        // US Scenario 2 Calculation
+        function calculateUS2() {
+            const niPrice = parseFloat(document.getElementById('us2-ni-price').value);
+            const coPrice = parseFloat(document.getElementById('us2-co-price').value);
+            const liPrice = parseFloat(document.getElementById('us2-li-price').value);
+            const graphitePrice = parseFloat(document.getElementById('us2-graphite-price').value);
+            const lifPrice = parseFloat(document.getElementById('us2-lif-price').value);
+            const alPrice = parseFloat(document.getElementById('us2-al-price').value);
+            const cuPrice = parseFloat(document.getElementById('us2-cu-price').value);
+            
+            const niContent = parseFloat(document.getElementById('us2-ni-content').value) / 100;
+            const coContent = parseFloat(document.getElementById('us2-co-content').value) / 100;
+            const liContent = parseFloat(document.getElementById('us2-li-content').value) / 100;
+            const cContent = parseFloat(document.getElementById('us2-c-content').value) / 100;
+            const fContent = parseFloat(document.getElementById('us2-f-content').value) / 100;
+            const alContent = parseFloat(document.getElementById('us2-al-content').value) / 100;
+            const cuContent = parseFloat(document.getElementById('us2-cu-content').value) / 100;
+            
+            const nicoRecovery = parseFloat(document.getElementById('us2-nico-recovery').value) / 100;
+            const liRecovery = parseFloat(document.getElementById('us2-li-recovery').value) / 100;
+            const cRecovery = parseFloat(document.getElementById('us2-c-recovery').value) / 100;
+            const fRecovery = parseFloat(document.getElementById('us2-f-recovery').value) / 100;
+            const alcuRecovery = parseFloat(document.getElementById('us2-alcu-recovery').value) / 100;
+            
+            const processingFee = parseFloat(document.getElementById('us2-processing-fee').value);
+            const capacityFee = parseFloat(document.getElementById('us2-capacity-fee').value);
+            const greenlibTransport = parseFloat(document.getElementById('us2-greenlib-transport').value);
+            const basel = 0; // Now included in all-in logistics and compliance
+            const exportTransport = parseFloat(document.getElementById('us2-export-transport').value);
+            const exportPayability = parseFloat(document.getElementById('us2-export-payability').value) / 100;
+            const greenlibPayability = parseFloat(document.getElementById('us2-greenlib-payability').value) / 100;
+            const profitSharePct = parseFloat(document.getElementById('us2-profit-share').value) / 100;
+            const volume = parseFloat(document.getElementById('us2-volume').value);
+            
+            // GreenLIB Calculations
+            const greenlibNiValue = niContent * nicoRecovery * greenlibPayability * niPrice;
+            const greenlibCoValue = coContent * nicoRecovery * greenlibPayability * coPrice;
+            const greenlibLiValue = liContent * liRecovery * 5.32 * liPrice;
+            const greenlibGraphiteValue = cContent * cRecovery * graphitePrice;
+            const greenlibLiFValue = fContent * fRecovery * 1.365 * lifPrice;
+            const greenlibAlValue = alContent * alcuRecovery * alPrice;
+            const greenlibCuValue = cuContent * alcuRecovery * cuPrice;
+            
+            const greenlibGrossValue = greenlibNiValue + greenlibCoValue + greenlibLiValue + greenlibGraphiteValue + greenlibLiFValue + greenlibAlValue + greenlibCuValue;
+            const greenlibNet = greenlibGrossValue - processingFee - capacityFee - greenlibTransport - basel;
+            
+            // Export Calculations
+            const exportNiValue = niContent * exportPayability * niPrice;
+            const exportCoValue = coContent * exportPayability * coPrice;
+            const exportNet = exportNiValue + exportCoValue - exportTransport;
+            
+            // Profit Share Calculation
+            const profitPerTonne = greenlibNet - exportNet;
+            const customerShare = (profitPerTonne * profitSharePct + exportNet);
+            const greenlibShare = (profitPerTonne * (1 - profitSharePct));
+            const totalProfitShare = customerShare * volume;
+            
+            const resultsHTML = `
+                <div class="section-title">COMPARATIVE ANALYSIS</div>
+                
+                <div class="results-grid">
+                    <div class="result-card greenlib">
+                        <div class="result-card-header">🔬 GREENLIB ROUTE</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value (${(liRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibLiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value (${(cRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibGraphiteValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>LiF + Al/Cu Value</td>
+                                <td>${formatCurrency(greenlibLiFValue + greenlibAlValue + greenlibCuValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(greenlibGrossValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>-${formatCurrency(processingFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>-${formatCurrency(capacityFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>All-in logistics and compliance</td>
+                                <td>-${formatCurrency(greenlibTransport)}/t</td>
+                            </tr>
 
-  // ====== Accessibility helpers ======
-  function addAriaLabels() {
-    document.querySelectorAll('table.input-table tbody tr').forEach(tr => {
-      const labelCell = tr.querySelector('td:first-child, th[scope="row"]');
-      const input = tr.querySelector('input, select');
-      if (labelCell && input) input.setAttribute('aria-label', labelCell.textContent.trim());
-    });
-  }
-  function applyPercentConstraints() {
-    document.querySelectorAll('input[id*="-content"], input[id*="-recovery"], input[id*="-payability"], #us2-profit-share').forEach(el => {
-      el.setAttribute('min', '0'); el.setAttribute('max', '100');
-    });
-    document.querySelectorAll('input[type="number"]').forEach(el => {
-      if (!el.hasAttribute('min')) el.setAttribute('min', '0');
-    });
-  }
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(greenlibNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="result-card export">
+                        <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Other Metals</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(exportNiValue + exportCoValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>All-in logistics and compliance (CIF Asia)</td>
+                                <td>-${formatCurrency(exportTransport)}/t</td>
+                            </tr>
 
-  // ====== Local storage ======
-  const LS_KEY = 'greenlib_calc_v2';
-  function saveInputs() {
-    const data = {};
-    document.querySelectorAll('input[type="number"], select').forEach(el => { data[el.id] = el.value; });
-    try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch {}
-  }
-  function loadInputs() {
-    try {
-      const raw = localStorage.getItem(LS_KEY); if (!raw) return;
-      const data = JSON.parse(raw);
-      Object.entries(data).forEach(([id, val]) => { const el = document.getElementById(id); if (el) el.value = val; });
-    } catch {}
-  }
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(exportNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="profit-share-card">
+                    <h3>💼 PROFIT SHARE MODEL (${(profitSharePct * 100).toFixed(0)}% Customer / ${((1-profitSharePct) * 100).toFixed(0)}% GreenLIB)</h3>
+                    <div class="profit-split">
+                        <div class="profit-split-item">
+                            <div class="profit-split-label">Customer Gets</div>
+                            <div class="profit-split-value">${formatCurrency(customerShare)}/t</div>
+                            <p style="margin-top: 10px; font-size: 13px; color: #5a5a52;">Export baseline + ${(profitSharePct * 100).toFixed(0)}% of uplift</p>
+                        </div>
+                        <div class="profit-split-item">
+                            <div class="profit-split-label">GreenLIB Gets</div>
+                            <div class="profit-split-value">${formatCurrency(greenlibShare)}/t</div>
+                            <p style="margin-top: 10px; font-size: 13px; color: #5a5a52;">${((1-profitSharePct) * 100).toFixed(0)}% of uplift above export baseline</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 20px; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #8BC34A;">
+                        <p style="font-size: 14px; color: #14532D;"><strong>Annual Value to Customer:</strong> ${formatCurrency(totalProfitShare)} (${formatCurrency(volume)} tonnes/yr)</p>
+                    </div>
+                </div>
+                
+                <div class="price-scenarios">
+                    <div class="scenario-card bear">
+                        <h4>🐻 BEAR CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $30,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $5,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Customer Gets:</span>
+                            <span>${formatCurrency(((
+                                (niContent * nicoRecovery * greenlibPayability * 12000) +
+                                (coContent * nicoRecovery * greenlibPayability * 30000) +
+                                (liContent * liRecovery * 5.32 * 5000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel - exportNet
+                            ) * profitSharePct + exportNet) * volume)}/yr</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card base">
+                        <h4>📊 BASE CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: ${formatCurrency(niPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: ${formatCurrency(coPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: ${formatCurrency(liPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Customer Gets:</span>
+                            <span>${formatCurrency(totalProfitShare)}/yr</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card bull">
+                        <h4>🚀 BULL CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $20,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $55,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Customer Gets:</span>
+                            <span>${formatCurrency(((
+                                (niContent * nicoRecovery * greenlibPayability * 20000) +
+                                (coContent * nicoRecovery * greenlibPayability * 55000) +
+                                (liContent * liRecovery * 5.32 * 12000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel - exportNet
+                            ) * profitSharePct + exportNet) * volume)}/yr</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('us2-results').innerHTML = resultsHTML;
+        }
+        
+        // EU Scenario Calculation
+        function calculateEU() {
+            const niPrice = parseFloat(document.getElementById('eu-ni-price').value);
+            const coPrice = parseFloat(document.getElementById('eu-co-price').value);
+            const liPrice = parseFloat(document.getElementById('eu-li-price').value);
+            const graphitePrice = parseFloat(document.getElementById('eu-graphite-price').value);
+            const lifPrice = parseFloat(document.getElementById('eu-lif-price').value);
+            const alPrice = parseFloat(document.getElementById('eu-al-price').value);
+            const cuPrice = parseFloat(document.getElementById('eu-cu-price').value);
+            
+            const niContent = parseFloat(document.getElementById('eu-ni-content').value) / 100;
+            const coContent = parseFloat(document.getElementById('eu-co-content').value) / 100;
+            const liContent = parseFloat(document.getElementById('eu-li-content').value) / 100;
+            const cContent = parseFloat(document.getElementById('eu-c-content').value) / 100;
+            const fContent = parseFloat(document.getElementById('eu-f-content').value) / 100;
+            const alContent = parseFloat(document.getElementById('eu-al-content').value) / 100;
+            const cuContent = parseFloat(document.getElementById('eu-cu-content').value) / 100;
+            
+            const nicoRecovery = parseFloat(document.getElementById('eu-nico-recovery').value) / 100;
+            const liRecovery = parseFloat(document.getElementById('eu-li-recovery').value) / 100;
+            const cRecovery = parseFloat(document.getElementById('eu-c-recovery').value) / 100;
+            const fRecovery = parseFloat(document.getElementById('eu-f-recovery').value) / 100;
+            const alcuRecovery = parseFloat(document.getElementById('eu-alcu-recovery').value) / 100;
+            
+            const processingFee = parseFloat(document.getElementById('eu-processing-fee').value);
+            const capacityFee = parseFloat(document.getElementById('eu-capacity-fee').value);
+            const greenlibTransport = parseFloat(document.getElementById('eu-greenlib-transport').value);
+            const basel = 0; // Now included in all-in logistics and compliance
+            const exportTransport = parseFloat(document.getElementById('eu-export-transport').value);
+            const exportPayability = parseFloat(document.getElementById('eu-export-payability').value) / 100;
+            const greenlibPayability = parseFloat(document.getElementById('eu-greenlib-payability').value) / 100;
+            const volume = parseFloat(document.getElementById('eu-volume').value);
+            
+            // GreenLIB Calculations
+            const greenlibNiValue = niContent * nicoRecovery * greenlibPayability * niPrice;
+            const greenlibCoValue = coContent * nicoRecovery * greenlibPayability * coPrice;
+            const greenlibLiValue = liContent * liRecovery * 5.32 * liPrice;
+            const greenlibGraphiteValue = cContent * cRecovery * graphitePrice;
+            const greenlibLiFValue = fContent * fRecovery * 1.365 * lifPrice;
+            const greenlibAlValue = alContent * alcuRecovery * alPrice;
+            const greenlibCuValue = cuContent * alcuRecovery * cuPrice;
+            
+            const greenlibGrossValue = greenlibNiValue + greenlibCoValue + greenlibLiValue + greenlibGraphiteValue + greenlibLiFValue + greenlibAlValue + greenlibCuValue;
+            const greenlibNet = greenlibGrossValue - processingFee - capacityFee - greenlibTransport - basel;
+            
+            // Export Calculations
+            const exportNiValue = niContent * exportPayability * niPrice;
+            const exportCoValue = coContent * exportPayability * coPrice;
+            const exportNet = exportNiValue + exportCoValue - exportTransport;
+            
+            // Improvement
+            const improvement = greenlibNet - exportNet;
+            const totalImprovement = improvement * volume;
+            const improvementPct = exportNet > 0 ? (improvement / exportNet) * 100 : 0;
+            
+            const resultsHTML = `
+                <div class="section-title">COMPARATIVE ANALYSIS</div>
+                
+                <div class="results-grid">
+                    <div class="result-card greenlib">
+                        <div class="result-card-header">🔬 GREENLIB ROUTE (CETA ADVANTAGE)</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(nicoRecovery * 100).toFixed(0)}% recovery, ${(greenlibPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(greenlibCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value (${(liRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibLiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value (${(cRecovery * 100).toFixed(0)}% recovery)</td>
+                                <td>${formatCurrency(greenlibGraphiteValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>LiF + Al/Cu Value</td>
+                                <td>${formatCurrency(greenlibLiFValue + greenlibAlValue + greenlibCuValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(greenlibGrossValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>-${formatCurrency(processingFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>-${formatCurrency(capacityFee)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>All-in logistics and compliance</td>
+                                <td>-${formatCurrency(greenlibTransport)}/t</td>
+                            </tr>
 
-  // ====== Toast notification ======
-  function toast(msg, type='warn', timeout=4000) {
-    const wrap = document.getElementById('toast-wrap') || (() => {
-      const d = document.createElement('div');
-      d.id = 'toast-wrap';
-      d.style.position = 'fixed'; d.style.top = '16px'; d.style.right = '16px'; d.style.zIndex = '9999';
-      document.body.appendChild(d); return d;
-    })();
-    const card = document.createElement('div');
-    card.className = 'toast ' + type;
-    card.textContent = msg;
-    wrap.appendChild(card);
-    setTimeout(() => { card.style.opacity = '0'; card.style.transform = 'translateY(-6px)'; setTimeout(() => card.remove(), 400); }, timeout);
-  }
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(greenlibNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="result-card export">
+                        <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
+                        <table class="result-table">
+                            <tr>
+                                <td>Ni Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportNiValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Co Value (${(exportPayability * 100).toFixed(0)}% payable)</td>
+                                <td>${formatCurrency(exportCoValue)}/t</td>
+                            </tr>
+                            <tr>
+                                <td>Li₂CO₃ Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Graphite Value</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Other Metals</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gross Product Value</strong></td>
+                                <td><strong>${formatCurrency(exportNiValue + exportCoValue)}/t</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Processing Fee</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity Reservation</td>
+                                <td>$0/t</td>
+                            </tr>
+                            <tr>
+                                <td>Ocean Freight (CIF Asia)</td>
+                                <td>-${formatCurrency(exportTransport)}/t</td>
+                            </tr>
 
-  // ====== Composition sanity check ======
-  function checkComposition(prefix) {
-    const sum = ['ni','co','li','c','f','al','cu']
-      .map(k => num(`${prefix}-${k}-content`, { min:0, max:100, fallback:0 }))
-      .reduce((a,b)=>a+b,0);
-    if (sum > 100.01) {
-      toast(`${prefix.toUpperCase()}: Feed composition sums to ${sum.toFixed(1)}%. Please verify. Calculations proceed with entered values.`, 'error', 6000);
-    }
-    return sum;
-  }
-
-  // ====== Read all inputs by prefix ======
-  function readParams(prefix) {
-    const prices = {
-      ni: num(`${prefix}-ni-price`, { min:0 }),
-      co: num(`${prefix}-co-price`, { min:0 }),
-      li: num(`${prefix}-li-price`, { min:0 }),
-      graphite: num(`${prefix}-graphite-price`, { min:0 }),
-      lif: num(`${prefix}-lif-price`, { min:0 }),
-      al: num(`${prefix}-al-price`, { min:0 }),
-      cu: num(`${prefix}-cu-price`, { min:0 }),
-    };
-    const content = {
-      ni: pctVal(`${prefix}-ni-content`),
-      co: pctVal(`${prefix}-co-content`),
-      li: pctVal(`${prefix}-li-content`),
-      c:  pctVal(`${prefix}-c-content`),
-      f:  pctVal(`${prefix}-f-content`),
-      al: pctVal(`${prefix}-al-content`),
-      cu: pctVal(`${prefix}-cu-content`),
-    };
-    const recovery = {
-      nico: pctVal(`${prefix}-nico-recovery`),
-      li:   pctVal(`${prefix}-li-recovery`),
-      c:    pctVal(`${prefix}-c-recovery`),
-      f:    pctVal(`${prefix}-f-recovery`),
-      alcu: pctVal(`${prefix}-alcu-recovery`),
-    };
-    const fees = {
-      processing: num(`${prefix}-processing-fee`, { min:0 }),
-      capacity:   num(`${prefix}-capacity-fee`, { min:0 }),
-      greenlibTransport: num(`${prefix}-greenlib-transport`, { min:0 }),
-    };
-    const exportParams = {
-      transport: num(`${prefix}-export-transport`, { min:0 }),
-      payability: pctVal(`${prefix}-export-payability`),
-    };
-    const greenlibPayability = pctVal(`${prefix}-greenlib-payability`);
-    const volume = num(`${prefix}-volume`, { min:0 });
-    return { prices, content, recovery, fees, exportParams, greenlibPayability, volume };
-  }
-
-  // ====== Core math (DRY) ======
-  function greenlibGrossAt({ prices, content, recovery, greenlibPayability }) {
-    const ni = content.ni * recovery.nico * greenlibPayability * prices.ni;
-    const co = content.co * recovery.nico * greenlibPayability * prices.co;
-    const li = content.li * recovery.li * 5.32 * prices.li;        // Li -> Li2CO3
-    const graph = content.c * recovery.c * prices.graphite;
-    const lif  = content.f * recovery.f * 1.365 * prices.lif;      // F  -> LiF
-    const al   = content.al * recovery.alcu * prices.al;
-    const cu   = content.cu * recovery.alcu * prices.cu;
-    return { ni, co, li, graph, lif, al, cu, gross: ni+co+li+graph+lif+al+cu };
-  }
-  function greenlibNetAt(gross, fees, tariff=0) {
-    return gross - fees.processing - fees.capacity - fees.greenlibTransport - tariff;
-  }
-  function exportNetAt({ content, prices, exportParams }) {
-    const niV = content.ni * exportParams.payability * prices.ni;
-    const coV = content.co * exportParams.payability * prices.co;
-    const gross = niV + coV;
-    return { niV, coV, gross, net: gross - exportParams.transport };
-  }
-
-  // ====== Tabs (accessible) ======
-  function initTabs() {
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.section');
-    function activate(targetId) {
-      tabs.forEach(t => {
-        const sel = t.getAttribute('aria-controls') === targetId;
-        t.classList.toggle('active', sel);
-        t.setAttribute('aria-selected', sel ? 'true' : 'false');
-        t.setAttribute('tabindex', sel ? '0' : '-1');
-      });
-      panels.forEach(p => {
-        const sel = p.id === targetId;
-        p.classList.toggle('active', sel);
-        if (sel) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
-      });
-    }
-    tabs.forEach(t => {
-      t.addEventListener('click', () => activate(t.getAttribute('aria-controls')));
-      t.addEventListener('keydown', e => {
-        const idx = [...tabs].indexOf(t);
-        if (e.key === 'ArrowRight') tabs[(idx+1) % tabs.length].focus();
-        if (e.key === 'ArrowLeft')  tabs[(idx-1+tabs.length) % tabs.length].focus();
-        if (e.key === 'Home') tabs[0].focus();
-        if (e.key === 'End')  tabs[tabs.length-1].focus();
-        if (e.key === 'Enter' || e.key === ' ') activate(t.getAttribute('aria-controls'));
-      });
-    });
-  }
-
-  // ====== Results builders ======
-  function buildUS1Results(state) {
-    const { prices, content, recovery, fees, exportParams, greenlibPayability, volume } = state;
-    const gl = greenlibGrossAt({ prices, content, recovery, greenlibPayability });
-    const cusmaQualified = document.getElementById('us1-cusma-qualified').value === 'true';
-    const tariffRate = num('us1-tariff-rate', { min: 0, max: 100, fallback: 0 }) / 100;
-    const tariffAmt = cusmaQualified ? 0 : gl.gross * tariffRate;
-    const glNet = greenlibNetAt(gl.gross, fees, tariffAmt);
-    const ex = exportNetAt({ content, prices, exportParams });
-    const improvement = glNet - ex.net;
-    const improvementPct = ex.net > 0 ? (improvement / ex.net * 100) : NaN;
-    const totalImprovement = improvement * volume;
-
-    const scen = {
-      bear: { ni:12000, co:30000, li:5000 },
-      base: { ni:prices.ni, co:prices.co, li:prices.li },
-      bull: { ni:20000, co:55000, li:12000 }
-    };
-    function scenValues({ ni, co, li }) {
-      const prices2 = { ...prices, ni, co, li };
-      const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-      const tariff2 = cusmaQualified ? 0 : gl2.gross * tariffRate;
-      const net2 = greenlibNetAt(gl2.gross, fees, tariff2);
-      const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-      return { net: net2, exportNet: ex2.net };
-    }
-    const sv = { bear:scenValues(scen.bear), base:{ net: glNet, exportNet: ex.net }, bull:scenValues(scen.bull) };
-
-    const tariffRow = \`
-      <tr>
-        <td>  \${cusmaQualified ? '(Qualified - 0%)' : '(Not Qualified - ' + (tariffRate*100).toFixed(0) + '%)'}</td>
-        <td>-\${usd0(tariffAmt)}/t</td>
-      </tr>\`;
-
-    const formulaDetails = \`
-<details class="formula-details"><summary>Show formulas</summary>
-<pre>
-GreenLIB gross = Ni*R_nico*P_gl + Co*R_nico*P_gl + Li*(R_li*5.32)*LiPrice
-               + C*R_c*GraphitePrice + F*(R_f*1.365)*LiFPrice + Al*R_alcu*AlPrice + Cu*R_alcu*CuPrice
-
-GreenLIB net = gross - Processing - Capacity - Logistics - Tariff (if Not CUSMA)
-
-Export net = (Ni*Pay_export*NiPrice + Co*Pay_export*CoPrice) - Export Logistics
-
-Improvement / t = GL net - Export net
-Annual benefit = Improvement / t * Volume
-</pre>
-</details>\`;
-
-    return \`
-      <div class="section-title">COMPARATIVE ANALYSIS</div>
-      <div class="results-grid">
-        <div class="result-card greenlib">
-          <div class="result-card-header">🔬 GREENLIB ROUTE (CUSMA)</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.ni)}/t</td></tr>
-            <tr><td>Co Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.co)}/t</td></tr>
-            <tr><td>Li₂CO₃ Value (\${(recovery.li*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.li)}/t</td></tr>
-            <tr><td>Graphite Value (\${(recovery.c*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.graph)}/t</td></tr>
-            <tr><td>LiF + Al/Cu Value</td><td>\${usd0(gl.lif + gl.al + gl.cu)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(gl.gross)}/t</strong></td></tr>
-            <tr><td>Processing Fee</td><td>-\${usd0(fees.processing)}/t</td></tr>
-            <tr><td>Capacity Reservation</td><td>-\${usd0(fees.capacity)}/t</td></tr>
-            <tr><td>All-in logistics and compliance</td><td>-\${usd0(fees.greenlibTransport)}/t</td></tr>
-            \${tariffRow}
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(glNet)}/t</strong></td></tr>
-          </table>
-        </div>
-        <div class="result-card export">
-          <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.niV)}/t</td></tr>
-            <tr><td>Co Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.coV)}/t</td></tr>
-            <tr><td>Li₂CO₃ / Graphite / Others</td><td>\${usd0(0)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(ex.gross)}/t</strong></td></tr>
-            <tr><td>All-in logistics and compliance (CIF Asia)</td><td>-\${usd0(exportParams.transport)}/t</td></tr>
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(ex.net)}/t</strong></td></tr>
-          </table>
-        </div>
-      </div>
-
-      \${!cusmaQualified ? \`<div class="tariff-banner"><strong>⚠️ CUSMA NOT QUALIFIED — TARIFF APPLIED</strong><br>Tariff rate \${(tariffRate*100).toFixed(0)}% adds \${usd0(tariffAmt)}/t to costs and is included in GreenLIB net.</div>\` : ''}
-
-      <div class="improvement-banner">
-        <h2>💰 VALUE ENHANCEMENT</h2>
-        <div class="improvement-amount">\${usd0(improvement)} per tonne</div>
-        <div class="improvement-details">
-          <p><strong>Total Annual Benefit:</strong> \${usd0(totalImprovement)} (\${num0(volume)} tonnes)</p>
-          <p><strong>Improvement:</strong> \${Number.isFinite(improvementPct) ? improvementPct.toFixed(1) + '%' : 'N/A'} vs Asia Export</p>
-        </div>
-      </div>
-
-      <div class="projection-card">
-        <h3>📈 5-YEAR CUMULATIVE FINANCIAL PROJECTION</h3>
-        <table class="projection-table">
-          <thead><tr><th>Year</th><th>Annual Volume (tonnes)</th><th>Improvement per Tonne</th><th>Annual Benefit</th><th>Cumulative Benefit</th></tr></thead>
-          <tbody>
-            \${[1,2,3,4,5].map(i => \`<tr><td>Year \${i}</td><td>\${num0(volume)}</td><td>\${usd0(improvement)}</td><td>\${usd0(totalImprovement)}</td><td>\${usd0(totalImprovement*i)}</td></tr>\`).join('')}
-            <tr><td><strong>TOTAL 5-YEAR BENEFIT</strong></td><td colspan="3"></td><td><strong>\${usd0(totalImprovement*5)}</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="price-scenarios">
-        \${['bear','base','bull'].map(name => {
-          const scenMap = { bear:{ni:12000,co:30000,li:5000}, base:{ni:prices.ni,co:prices.co,li:prices.li}, bull:{ni:20000,co:55000,li:12000} };
-          const label = name==='bear' ? '🐻 BEAR CASE' : (name==='base' ? '📊 BASE CASE' : '🚀 BULL CASE');
-          const s = scenMap[name];
-          const prices2 = { ...prices, ni:s.ni, co:s.co, li:s.li };
-          const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-          const tariff2 = cusmaQualified ? 0 : gl2.gross * tariffRate;
-          const net2 = greenlibNetAt(gl2.gross, fees, tariff2);
-          const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-          return \`<div class="scenario-card \${name}">
-            <h4>\${label}</h4>
-            <div class="scenario-metric"><span>Ni:</span><span>\${usd0(s.ni)}/t</span></div>
-            <div class="scenario-metric"><span>Co:</span><span>\${usd0(s.co)}/t</span></div>
-            <div class="scenario-metric"><span>Li:</span><span>\${usd0(s.li)}/t</span></div>
-            <div class="scenario-metric"><span>GreenLIB Net:</span><span>\${usd0(net2)}/t</span></div>
-            <div class="scenario-metric"><span>Export Net:</span><span>\${usd0(ex2.net)}/t</span></div>
-          </div>\`;
-        }).join('')}
-      </div>
-
-      \${formulaDetails}
-    \`;
-  }
-
-  function buildUS2Results(state) {
-    const { prices, content, recovery, fees, exportParams, greenlibPayability, volume } = state;
-    const gl = greenlibGrossAt({ prices, content, recovery, greenlibPayability });
-    const glNet = greenlibNetAt(gl.gross, fees, 0);
-    const ex = exportNetAt({ content, prices, exportParams });
-    const uplift = glNet - ex.net;
-    const profitSharePct = pctVal('us2-profit-share');
-    const customerPerT = (uplift * profitSharePct + ex.net);
-    const greenlibPerT = (uplift * (1 - profitSharePct));
-    const annualCustomer = customerPerT * volume;
-
-    const scen = { bear:{ni:12000, co:30000, li:5000}, base:{ni:prices.ni, co:prices.co, li:prices.li}, bull:{ni:20000, co:55000, li:12000} };
-    function scenValues({ ni, co, li }) {
-      const prices2 = { ...prices, ni, co, li };
-      const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-      const net2 = greenlibNetAt(gl2.gross, fees, 0);
-      const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-      const uplift2 = net2 - ex2.net;
-      const custAnnual = (uplift2 * profitSharePct + ex2.net) * volume;
-      return { customerAnnual: custAnnual };
-    }
-    const sv = { bear:scenValues(scen.bear), base:{ customerAnnual: annualCustomer }, bull:scenValues(scen.bull) };
-
-    const formulaDetails = \`
-<details class="formula-details"><summary>Show formulas</summary>
-<pre>
-Uplift / t = GreenLIB_net - Export_net
-Customer / t = Export_net + ProfitShare% × Uplift
-GreenLIB / t = (1 - ProfitShare%) × Uplift
-Annual to Customer = (Customer / t) × Volume
-</pre>
-</details>\`;
-
-    return \`
-      <div class="section-title">COMPARATIVE ANALYSIS</div>
-      <div class="results-grid">
-        <div class="result-card greenlib">
-          <div class="result-card-header">🔬 GREENLIB ROUTE</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.ni)}/t</td></tr>
-            <tr><td>Co Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.co)}/t</td></tr>
-            <tr><td>Li₂CO₃ Value (\${(recovery.li*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.li)}/t</td></tr>
-            <tr><td>Graphite Value (\${(recovery.c*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.graph)}/t</td></tr>
-            <tr><td>LiF + Al/Cu Value</td><td>\${usd0(gl.lif + gl.al + gl.cu)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(gl.gross)}/t</strong></td></tr>
-            <tr><td>Processing Fee</td><td>-\${usd0(fees.processing)}/t</td></tr>
-            <tr><td>Capacity Reservation</td><td>-\${usd0(fees.capacity)}/t</td></tr>
-            <tr><td>All-in logistics and compliance</td><td>-\${usd0(fees.greenlibTransport)}/t</td></tr>
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(glNet)}/t</strong></td></tr>
-          </table>
-        </div>
-        <div class="result-card export">
-          <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.niV)}/t</td></tr>
-            <tr><td>Co Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.coV)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(ex.gross)}/t</strong></td></tr>
-            <tr><td>All-in logistics and compliance (CIF Asia)</td><td>-\${usd0(exportParams.transport)}/t</td></tr>
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(ex.net)}/t</strong></td></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="profit-share-card">
-        <h3>💼 PROFIT SHARE MODEL (\${(profitSharePct*100).toFixed(0)}% Customer / \${((1-profitSharePct)*100).toFixed(0)}% GreenLIB)</h3>
-        <div class="profit-split">
-          <div class="profit-split-item">
-            <div class="profit-split-label">Customer Gets</div>
-            <div class="profit-split-value">\${usd0(customerPerT)}/t</div>
-            <p style="margin-top: 10px; font-size: 13px; color: #5a5a52;">Export baseline + \${(profitSharePct*100).toFixed(0)}% of uplift</p>
-          </div>
-          <div class="profit-split-item">
-            <div class="profit-split-label">GreenLIB Gets</div>
-            <div class="profit-split-value">\${usd0(greenlibPerT)}/t</div>
-            <p style="margin-top: 10px; font-size: 13px; color: #5a5a52;">\${((1-profitSharePct)*100).toFixed(0)}% of uplift</p>
-          </div>
-        </div>
-        <div style="margin-top: 20px; padding: 20px; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #8BC34A;">
-          <p style="font-size: 14px; color: #14532D;"><strong>Annual Value to Customer:</strong> \${usd0(annualCustomer)} (\${num0(volume)} tonnes/yr)</p>
-        </div>
-      </div>
-
-      <div class="price-scenarios">
-        \${['bear','base','bull'].map(name => {
-          const scenMap = { bear:{ni:12000,co:30000,li:5000}, base:{ni:prices.ni,co:prices.co,li:prices.li}, bull:{ni:20000,co:55000,li:12000} };
-          const s = scenMap[name];
-          const label = name==='bear' ? '🐻 BEAR CASE' : (name==='base' ? '📊 BASE CASE' : '🚀 BULL CASE');
-          const prices2 = { ...prices, ni:s.ni, co:s.co, li:s.li };
-          const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-          const net2 = greenlibNetAt(gl2.gross, fees, 0);
-          const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-          const uplift2 = net2 - ex2.net;
-          const profitSharePct = pctVal('us2-profit-share');
-          const custAnnual = (uplift2 * profitSharePct + ex2.net) * volume;
-          return \`<div class="scenario-card \${name}">
-            <h4>\${label}</h4>
-            <div class="scenario-metric"><span>Ni:</span><span>\${usd0(s.ni)}/t</span></div>
-            <div class="scenario-metric"><span>Co:</span><span>\${usd0(s.co)}/t</span></div>
-            <div class="scenario-metric"><span>Li:</span><span>\${usd0(s.li)}/t</span></div>
-            <div class="scenario-metric"><span>Customer Gets:</span><span>\${usd0(custAnnual)}/yr</span></div>
-          </div>\`;
-        }).join('')}
-      </div>
-
-      \${formulaDetails}
-    \`;
-  }
-
-  function buildEUResults(state) {
-    const { prices, content, recovery, fees, exportParams, greenlibPayability, volume } = state;
-    const gl = greenlibGrossAt({ prices, content, recovery, greenlibPayability });
-    const glNet = greenlibNetAt(gl.gross, fees, 0);
-    const ex = exportNetAt({ content, prices, exportParams });
-    const improvement = glNet - ex.net;
-    const improvementPct = ex.net > 0 ? (improvement / ex.net * 100) : NaN;
-    const totalImprovement = improvement * volume;
-
-    const scen = { bear:{ni:12000, co:30000, li:5000}, base:{ni:prices.ni, co:prices.co, li:prices.li}, bull:{ni:20000, co:55000, li:12000} };
-    function scenValues({ ni, co, li }) {
-      const prices2 = { ...prices, ni, co, li };
-      const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-      const net2 = greenlibNetAt(gl2.gross, fees, 0);
-      const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-      return { net: net2, exportNet: ex2.net };
-    }
-    const sv = { bear:scenValues(scen.bear), base:{ net: glNet, exportNet: ex.net }, bull:scenValues(scen.bull) };
-
-    const formulaDetails = \`
-<details class="formula-details"><summary>Show formulas</summary>
-<pre>Same as US1 but without CUSMA tariff term.</pre>
-</details>\`;
-
-    return \`
-      <div class="section-title">COMPARATIVE ANALYSIS</div>
-      <div class="results-grid">
-        <div class="result-card greenlib">
-          <div class="result-card-header">🔬 GREENLIB ROUTE</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.ni)}/t</td></tr>
-            <tr><td>Co Value (\${(recovery.nico*100).toFixed(0)}% recovery, \${(greenlibPayability*100).toFixed(0)}% payable)</td><td>\${usd0(gl.co)}/t</td></tr>
-            <tr><td>Li₂CO₃ Value (\${(recovery.li*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.li)}/t</td></tr>
-            <tr><td>Graphite Value (\${(recovery.c*100).toFixed(0)}% recovery)</td><td>\${usd0(gl.graph)}/t</td></tr>
-            <tr><td>LiF + Al/Cu Value</td><td>\${usd0(gl.lif + gl.al + gl.cu)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(gl.gross)}/t</strong></td></tr>
-            <tr><td>Processing Fee</td><td>-\${usd0(fees.processing)}/t</td></tr>
-            <tr><td>Capacity Reservation</td><td>-\${usd0(fees.capacity)}/t</td></tr>
-            <tr><td>All-in logistics and compliance</td><td>-\${usd0(fees.greenlibTransport)}/t</td></tr>
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(glNet)}/t</strong></td></tr>
-          </table>
-        </div>
-        <div class="result-card export">
-          <div class="result-card-header">📦 EXPORT ROUTE (BASELINE)</div>
-          <table class="result-table">
-            <tr><td>Ni Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.niV)}/t</td></tr>
-            <tr><td>Co Value (\${(exportParams.payability*100).toFixed(0)}% payable)</td><td>\${usd0(ex.coV)}/t</td></tr>
-            <tr><td><strong>Gross Product Value</strong></td><td><strong>\${usd0(ex.gross)}/t</strong></td></tr>
-            <tr><td>All-in logistics and compliance (CIF Asia)</td><td>-\${usd0(exportParams.transport)}/t</td></tr>
-            <tr><td><strong>NET REALIZATION</strong></td><td><strong>\${usd0(ex.net)}/t</strong></td></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="improvement-banner">
-        <h2>💰 VALUE ENHANCEMENT</h2>
-        <div class="improvement-amount">\${usd0(improvement)} per tonne</div>
-        <div class="improvement-details">
-          <p><strong>Total Annual Benefit:</strong> \${usd0(totalImprovement)} (\${num0(volume)} tonnes)</p>
-          <p><strong>Improvement:</strong> \${Number.isFinite(improvementPct) ? improvementPct.toFixed(1) + '%' : 'N/A'} vs Asia Export</p>
-        </div>
-      </div>
-
-      <div class="projection-card">
-        <h3>📈 5-YEAR CUMULATIVE FINANCIAL PROJECTION</h3>
-        <table class="projection-table">
-          <thead><tr><th>Year</th><th>Annual Volume (tonnes)</th><th>Improvement per Tonne</th><th>Annual Benefit</th><th>Cumulative Benefit</th></tr></thead>
-          <tbody>
-            \${[1,2,3,4,5].map(i => \`<tr><td>Year \${i}</td><td>\${num0(volume)}</td><td>\${usd0(improvement)}</td><td>\${usd0(totalImprovement)}</td><td>\${usd0(totalImprovement*i)}</td></tr>\`).join('')}
-            <tr><td><strong>TOTAL 5-YEAR BENEFIT</strong></td><td colspan="3"></td><td><strong>\${usd0(totalImprovement*5)}</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="price-scenarios">
-        \${['bear','base','bull'].map(name => {
-          const scenMap = { bear:{ni:12000,co:30000,li:5000}, base:{ni:prices.ni,co:prices.co,li:prices.li}, bull:{ni:20000,co:55000,li:12000} };
-          const label = name==='bear' ? '🐻 BEAR CASE' : (name==='base' ? '📊 BASE CASE' : '🚀 BULL CASE');
-          const s = scenMap[name];
-          const prices2 = { ...prices, ni:s.ni, co:s.co, li:s.li };
-          const gl2 = greenlibGrossAt({ prices: prices2, content, recovery, greenlibPayability });
-          const net2 = greenlibNetAt(gl2.gross, fees, 0);
-          const ex2 = exportNetAt({ content, prices: prices2, exportParams });
-          return \`<div class="scenario-card \${name}">
-            <h4>\${label}</h4>
-            <div class="scenario-metric"><span>Ni:</span><span>\${usd0(s.ni)}/t</span></div>
-            <div class="scenario-metric"><span>Co:</span><span>\${usd0(s.co)}/t</span></div>
-            <div class="scenario-metric"><span>Li:</span><span>\${usd0(s.li)}/t</span></div>
-            <div class="scenario-metric"><span>GreenLIB Net:</span><span>\${usd0(net2)}/t</span></div>
-            <div class="scenario-metric"><span>Export Net:</span><span>\${usd0(ex2.net)}/t</span></div>
-          </div>\`;
-        }).join('')}
-      </div>
-
-      \${formulaDetails}
-    \`;
-  }
-
-  function wireButtons() {
-    document.getElementById('btn-us1')?.addEventListener('click', () => {
-      checkComposition('us1'); const state = readParams('us1');
-      document.getElementById('us1-results').innerHTML = buildUS1Results(state); saveInputs();
-    });
-    document.getElementById('btn-us2')?.addEventListener('click', () => {
-      checkComposition('us2'); const state = readParams('us2');
-      document.getElementById('us2-results').innerHTML = buildUS2Results(state); saveInputs();
-    });
-    document.getElementById('btn-eu')?.addEventListener('click', () => {
-      checkComposition('eu'); const state = readParams('eu');
-      document.getElementById('eu-results').innerHTML = buildEUResults(state); saveInputs();
-    });
-  }
-
-  function init() {
-    applyPercentConstraints();
-    addAriaLabels();
-    loadInputs();
-    initTabs();
-    wireButtons();
-    // Auto-calc active tab initially
-    document.getElementById('btn-us1')?.click();
-    document.addEventListener('input', (e) => {
-      if (e.target.matches('input[type="number"], select')) saveInputs();
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
-</script>
-
+                            <tr>
+                                <td><strong>NET REALIZATION</strong></td>
+                                <td><strong>${formatCurrency(exportNet)}/t</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="improvement-banner">
+                    <h2>💰 VALUE ENHANCEMENT WITH CETA ACCESS</h2>
+                    <div class="improvement-amount">${formatCurrency(improvement)} per tonne</div>
+                    <div class="improvement-details">
+                        <p><strong>Total Annual Benefit:</strong> ${formatCurrency(totalImprovement)} (${formatCurrency(volume)} tonnes)</p>
+                        <p><strong>Improvement:</strong> ${improvementPct.toFixed(1)}% vs Asia Export Route</p>
+                        <p><strong>Key Advantages:</strong> CETA zero-tariff + Higher Ni/Co recovery (${(nicoRecovery * 100).toFixed(0)}% vs ${(exportPayability * 100).toFixed(0)}%) + Full Li, Graphite, F, Al, Cu recovery</p>
+                    </div>
+                </div>
+                
+                <div class="esg-card">
+                    <h3>🌍 ESG IMPACT METRICS (LCA-VERIFIED)</h3>
+                    <div class="esg-grid">
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">🌱</div>
+                            <div class="esg-metric-value">-2,508 kg</div>
+                            <div class="esg-metric-label">Net CO₂ eq per tonne (Carbon Negative!)</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">⚡</div>
+                            <div class="esg-metric-value">439 kWh</div>
+                            <div class="esg-metric-label">Electricity per tonne processed</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">💧</div>
+                            <div class="esg-metric-value">&lt;1.0 m³</div>
+                            <div class="esg-metric-label">Net water consumption (90% recycled)</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">♻️</div>
+                            <div class="esg-metric-value">&lt;2%</div>
+                            <div class="esg-metric-label">Hazardous waste of input</div>
+                        </div>
+                        <div class="esg-metric">
+                            <div class="esg-metric-icon">🏭</div>
+                            <div class="esg-metric-value">${formatCurrency(volume * 2.508)} t</div>
+                            <div class="esg-metric-label">Annual CO₂ Avoided (${formatCurrency(volume)} tonnes/yr)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.9;">
+                        <strong>Water Efficiency:</strong> 90% internal recycling via filtration & condensation. Net consumption &lt;1.0 m³/t vs. 5-10 m³/t for typical hydromet.<br>
+                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation. Full details in Appendix I.
+                    </div>
+                </div>
+                
+                <div class="projection-card">
+                    <h3>📈 5-YEAR CUMULATIVE FINANCIAL PROJECTION</h3>
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Annual Volume (tonnes)</th>
+                                <th>Improvement per Tonne</th>
+                                <th>Annual Benefit</th>
+                                <th>Cumulative Benefit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Year 1</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 2</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 3</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 3)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 4</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 4)}</td>
+                            </tr>
+                            <tr>
+                                <td>Year 5</td>
+                                <td>${formatCurrency(volume)}</td>
+                                <td>${formatCurrency(improvement)}</td>
+                                <td>${formatCurrency(totalImprovement)}</td>
+                                <td>${formatCurrency(totalImprovement * 5)}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL 5-YEAR BENEFIT</strong></td>
+                                <td colspan="3"></td>
+                                <td><strong>${formatCurrency(totalImprovement * 5)}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="price-scenarios">
+                    <div class="scenario-card bear">
+                        <h4>🐻 BEAR CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $30,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $5,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(
+                                (niContent * nicoRecovery * greenlibPayability * 12000) +
+                                (coContent * nicoRecovery * greenlibPayability * 30000) +
+                                (liContent * liRecovery * 5.32 * 5000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel
+                            )}/t</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card base">
+                        <h4>📊 BASE CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: ${formatCurrency(niPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: ${formatCurrency(coPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: ${formatCurrency(liPrice)}/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(greenlibNet)}/t</span>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card bull">
+                        <h4>🚀 BULL CASE</h4>
+                        <div class="scenario-metric">
+                            <span>Ni: $20,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Co: $55,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>Li: $12,000/t</span>
+                        </div>
+                        <div class="scenario-metric">
+                            <span>GreenLIB Net:</span>
+                            <span>${formatCurrency(
+                                (niContent * nicoRecovery * greenlibPayability * 20000) +
+                                (coContent * nicoRecovery * greenlibPayability * 55000) +
+                                (liContent * liRecovery * 5.32 * 12000) +
+                                (cContent * cRecovery * graphitePrice) +
+                                (fContent * fRecovery * 1.365 * lifPrice) +
+                                (alContent * alcuRecovery * alPrice) +
+                                (cuContent * alcuRecovery * cuPrice) -
+                                processingFee - capacityFee - greenlibTransport - basel
+                            )}/t</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('eu-results').innerHTML = resultsHTML;
+        }
+        
+        // Auto-calculate on page load
+        window.onload = function() {
+            // Calculator ready - click button to calculate
+        };
+    </script>
 </body>
 </html>
