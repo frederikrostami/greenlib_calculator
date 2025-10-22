@@ -662,6 +662,35 @@
         .calculate-btn:active {
             transform: translateY(0);
         }
+        
+        /* Toast notifications */
+        .toast-wrap { 
+            position: fixed; 
+            top: 16px; 
+            right: 16px; 
+            z-index: 9999; 
+        }
+        .toast {
+            background: #14532D; 
+            color: #fff; 
+            padding: 12px 16px; 
+            margin-top: 10px;
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,.12); 
+            font-weight: 700;
+            transition: all .3s ease;
+        }
+        .toast.error { 
+            background: #7f1d1d; 
+        }
+        
+        /* Composition validation message */
+        .comp-msg { 
+            margin-top: 8px; 
+            font-size: 13px; 
+            color: #7f1d1d; 
+            font-weight: 700; 
+        }
     </style>
 </head>
 <body>
@@ -800,6 +829,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="us1-comp-msg" class="comp-msg" aria-live="polite"></div>
                 
                 <div class="section-title">RECOVERY RATES (%)</div>
                 <table class="input-table">
@@ -1052,6 +1082,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="us2-comp-msg" class="comp-msg" aria-live="polite"></div>
                 
                 <div class="section-title">RECOVERY RATES (%)</div>
                 <table class="input-table">
@@ -1279,6 +1310,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="eu-comp-msg" class="comp-msg" aria-live="polite"></div>
                 
                 <div class="section-title">RECOVERY RATES (%)</div>
                 <table class="input-table">
@@ -1640,13 +1672,13 @@ function calculateUS1() {
                         </div>
                         <div class="esg-metric">
                             <div class="esg-metric-icon">🏭</div>
-                            <div class="esg-metric-value">${formatCurrency(volume * 2.508)} t</div>
+                            <div class="esg-metric-value">${(volume * 2.508).toLocaleString("en-US", {maximumFractionDigits: 0})} t</div>
                             <div class="esg-metric-label">Annual CO₂ Avoided (${volume.toLocaleString("en-US", {maximumFractionDigits: 0})} tonnes/yr)</div>
                         </div>
                     </div>
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.9;">
                         <strong>Water Efficiency:</strong> 90% internal recycling via filtration & condensation. Net consumption &lt;1.0 m³/t vs. 5-10 m³/t for typical hydromet.<br>
-                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation. Full details in Appendix I.
+                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation.
                     </div>
                 </div>
                 
@@ -2221,13 +2253,13 @@ function calculateUS1() {
                         </div>
                         <div class="esg-metric">
                             <div class="esg-metric-icon">🏭</div>
-                            <div class="esg-metric-value">${formatCurrency(volume * 2.508)} t</div>
+                            <div class="esg-metric-value">${(volume * 2.508).toLocaleString("en-US", {maximumFractionDigits: 0})} t</div>
                             <div class="esg-metric-label">Annual CO₂ Avoided (${volume.toLocaleString("en-US", {maximumFractionDigits: 0})} tonnes/yr)</div>
                         </div>
                     </div>
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.9;">
                         <strong>Water Efficiency:</strong> 90% internal recycling via filtration & condensation. Net consumption &lt;1.0 m³/t vs. 5-10 m³/t for typical hydromet.<br>
-                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation. Full details in Appendix I.
+                        <strong>LCA Methodology:</strong> Gate-to-gate analysis with avoided-burden allocation.
                     </div>
                 </div>
                 
@@ -2367,6 +2399,97 @@ function calculateUS1() {
         window.onload = function() {
             // Calculator ready - click button to calculate
         };
+        
+        // ===== LOCALSTORAGE PERSISTENCE =====
+        (() => {
+            const LS_KEY = 'greenlib_calc_v2';
+            function saveInputs() {
+                const data = {};
+                document.querySelectorAll('input[type="number"], select').forEach(el => { 
+                    if (el.id) data[el.id] = el.value; 
+                });
+                try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch {}
+            }
+            function loadInputs() {
+                try {
+                    const raw = localStorage.getItem(LS_KEY);
+                    if (!raw) return;
+                    const data = JSON.parse(raw);
+                    Object.entries(data).forEach(([id, val]) => {
+                        const el = document.getElementById(id);
+                        if (el) el.value = val;
+                    });
+                } catch {}
+            }
+            // Clamp % inputs to 0–100; non-percent numbers to >= 0
+            function enforceInputConstraints() {
+                document.querySelectorAll('input[id*="-content"], input[id*="-recovery"], input[id*="-payability"]').forEach(el => {
+                    el.min = '0'; el.max = '100';
+                });
+                document.querySelectorAll('input[type="number"]').forEach(el => {
+                    if (!el.hasAttribute('min')) el.min = '0';
+                });
+            }
+            document.addEventListener('DOMContentLoaded', () => {
+                enforceInputConstraints();
+                loadInputs();
+                document.addEventListener('input', (e) => {
+                    if (e.target.matches('input[type="number"], select')) saveInputs();
+                });
+            });
+        })();
+        
+        // ===== COMPOSITION VALIDATION & TOAST =====
+        (() => {
+            const THRESHOLD = 100.0;
+            function toast(msg, type='error', timeout=4000) {
+                const wrap = document.querySelector('.toast-wrap') || (() => {
+                    const d = document.createElement('div'); 
+                    d.className = 'toast-wrap'; 
+                    document.body.appendChild(d); 
+                    return d;
+                })();
+                const t = document.createElement('div');
+                t.className = 'toast ' + type;
+                t.textContent = msg;
+                wrap.appendChild(t);
+                setTimeout(() => { 
+                    t.style.opacity = '0'; 
+                    t.style.transform = 'translateY(-6px)'; 
+                    setTimeout(() => t.remove(), 400); 
+                }, timeout);
+            }
+            function sumComposition(prefix) {
+                const ids = ['ni','co','li','c','f','al','cu'].map(k => `${prefix}-${k}-content`);
+                const vals = ids.map(id => parseFloat(document.getElementById(id)?.value || '0'));
+                return vals.reduce((a,b)=>a+(isNaN(b)?0:b), 0);
+            }
+            function validateComposition(prefix) {
+                const sum = sumComposition(prefix);
+                const msgEl = document.getElementById(`${prefix}-comp-msg`);
+                if (!msgEl) return sum;
+                if (sum > THRESHOLD + 0.01) {
+                    msgEl.textContent = `Feed composition sums to ${sum.toFixed(1)}%. Please verify inputs.`;
+                    toast(`${prefix.toUpperCase()}: composition = ${sum.toFixed(1)}% (> ${THRESHOLD}%).`);
+                } else {
+                    msgEl.textContent = '';
+                }
+                return sum;
+            }
+            // Wire validation on input
+            document.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('input', (e) => {
+                    if (!e.target.matches('input[type="number"]')) return;
+                    const id = e.target.id;
+                    if (!id) return;
+                    const prefix = id.split('-')[0];
+                    if (['us1','us2','eu'].includes(prefix)) validateComposition(prefix);
+                });
+                // Initial validation after load
+                ['us1','us2','eu'].forEach(p => validateComposition(p));
+            });
+            window.__validateComposition = validateComposition;
+        })();
     </script>
 </body>
 </html>
