@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare realization values across processing routes for black mass using dynamic inputs and tariff scenarios.">
     <title>GreenLIB Black Mass Financial Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -691,35 +694,63 @@
             color: #7f1d1d; 
             font-weight: 700; 
         }
+        
+        /* Accessibility: Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* Accessibility: Screen reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Remove bold from row headers while keeping semantic HTML */
+        .input-table tbody th[scope="row"] {
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
     <!-- Top Header with Logo -->
-    <div class="top-header">
+    <header class="top-header">
         <div class="logo-container">
             <img src="data:image/png;base64,UklGRlweAABXRUJQVlA4WAoAAAAgAAAAmwIAuwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggbhwAAJCGAJ0BKpwCvAA+USSPRiOhoSEjELrocAoJaW78U1lU61DA/Tb+ifkL37f1v+4/tf/afbv8W9jH2T/pH/J5i/T3iT+un4L+yftT+V34a/du8X8W+6n1AvxX+Of378uv7z+yv0D8QO4gtP6AXsT9a/2n9n/w3/k/zno7fsnoL84/uAfzP+0/7b+6/uZ/c/jP/peCL9q/3vsAfzD+3/8D+4/ij9J38X/2v8z+Ynsg/MP8t/2v898An8r/qf/F/xf+b/+f7////7p//v7V/2t//P/W+CX9Yf/0TIHbc5OvY23OTr2Ntzk69jbc5OvY23OTm+EB60Do1qRIA6NakSAOjWpEgDo1qRH/k3zKajy8Ljlb+OrTVxCGPt8JVjmIDuMp9fSPC7P+O25ydextucnXsbbnJ17G242dNo78ZRr1HVE10wUXiHmqtlArN7TisJIGJH92GAWnFtRc76fio/af8dtzk69VVaPremKq5g1Ea1j26iW0ubcRhOZQLBuwfRhcFG6esdlXlfLBNihjWQhZZno0OyM57C420CeyZs9RjHz5PlxELog/hbWHsO1xlzlCvDeAkC+CF94ZLKhT/eN+ddw+wpf1s4cfIe/rPVXSPhl8rM0onWFnVSNnALx8Ppw6BmsfLnnEp2FksR9Opl86ZAHFN3bkHBGvNmwpPh72WTxyN9iFS2+tt+/LL+0imC9036uJaIYv6BywNab2vbQQ8ZQq3u3SmFaf5XvO+v/TRmP9p6z5FK1ho7cxepwYr53LK4v5JqxjuCDRz3f55+9O7BadvXyltQgGFhapv1f0qTUmgSjkbCXfIjIGa0/pFXjZ+2NneTypkKUJHPVINp45G/GUa+zLDs5Mxo3K52aJACGB1MnT2A6tNKcM/QWbOWyTeighav58upbEJgLivJ1/jO5Ox1NYm7mtokjwdsu07ZTV2nroPrnoeD15MMF2a8lCLwd47qds8e6+ihEKol4UqeL2ehKga4L/ein8AdCAF8bBSMrKy+Tv2ePb5mKISuH1ZAwIDF6B+ptM+PiaA7amWISBVpoXe+lde6/nZHaalLNUyf83B63F2E+OWolgCeNyvaAEXocOrF0KCCdXrY9frOEGU+CsOdt+oKk3S6ogsi1HuJi5gWrajKDiY5p+OWUBqF5G/9/W452RoZuejkADxLKq4vBzZlHQM9+Fkd2lmeFJQ0PgOCJQTBEPG2Ddhjw7c3r1HRT+K5stElIt1VfS+nJlQTVi7iFQuZ71Shr87WtUm0LXagL12hYpGN05rMGwnCCwDHsOHXwebhHQ1S+EWWFTzCBrDPZxYvgS8RxS54Zogq9nPMsoo1xWj0koQyorjElG3Q8R90xe/lymd1PXn59exeGVrj2vsf8uAaG0/47bnJ17G25ydextucnXsbbnJ17G25ydextucnXsbbnJ17G25ydextucnXsbbm6AAP7/v0AAPgb37aO+4Yd1Nh9ZgkYYlsJgOVxqr5wV4exfpYnewAahuKMuzLvQEj7AhEuENn5CGBhjM1ftuIjtKi0oIRJbHR+4BThfQq5P4e67bjinhUWMt6YI2tyxwsMKna1kqDlbL7c9QtxtiMLsgOzekin/l9dP8Z1qn6O2B5fp02QrFt0VonI2SmTfHaW6BSOLzeRAm/5nAfC02Ywh6ldCzS8vuKFDjwWzn+rKL+tdjYluuMO2ETSS2pazZV12k9ot95E5gcd6zDCWZMZGbNTyq1OSZ/Gp/yjZWM/zUeqel1W8yTAtmLyqGmVEU5kdDstw8iiN1T5pxoPMkfQ3lBE8s0eqVnT3HAUUssY5KXf7Hdm0SGCD+j9ci/ut4OHLv5BHUmlIEDWCJQGe5eTUs7RwWSg6qt1gxaLH/EODduIt8cUMAVJ1OXRvsA/xrwQUt/hIh4OV1Mhr6UWFTRIQcB3zGEk/ejz3AI4IO+dIlG24lZ+4utkSO8YkRNHdqPdZMWCqVW0/XJzn9jOFlHltnlDMwG29/6cKmfOBNnTgHU2OAy/6CSWMbZAoWfDi/2bM/RBYqBfUDGSR/Qj7KR8pkAwchgUga5lSaQej+dRzM45Oxhqti43p2MOK+FSyLu+TVJ65h/tclkK55WSRZDb41mfFknFNFoIjbceeSw6Jjc5ZN2KpAtudJ8J9I7iklTMXXkIDk/az7wq4gBtLnQVlk1fDbRzacZ9/dJ5RXvaeyYnj5Vdni5X0peUcembFUYOnRwpfs/4J2ZRtp/16o0s7ERlsE1r72jjhqD8bTXtodEipGTHHBdAoMfWnKaIt+pOUVJYHB34XaEunNy4qfRTnL5hBry1AEPav4IoT7cB6+1qKgMEOjhysmUysMJZkxkZr3Dg0nuSjUoW0lk/BmuzHhzqp8xjZ1PPPnz19pNiSfvZMobIJMWaIRbWWIkWKxFWZ5n+vPNLuJ257hUvP/md0C4RogCcXy97YoWBSTl8RTU6Z3uP6azG0xjzQM2wsDuCLDxlXioOc1eQ1wp/8s8yB+LJPK0ra9xigUSGc3xa77LZh56E9xIqtXtL7EoR6e2iA84GdiNpkdN/TwL8oD9fpk2xOMwmg02Tfjswt196mwv/k1TInBnLxsTLE+n0jq2LysxV/KQWuR5uxyWWy+x7i56dfCgpDljjpzXUOagAPHebimzw8LTZ3HsxSt0PlTlE+uyN4cj1KzMFw7BA02TAUEk0bdUbGBY85yPQgoUrCtbKkZVftD9y/MC6L17MihK90Trg08beDKdy6pMVrSxfidju8gp9joxqnnatQbiLcSdDEVQUjtAtLnegIskyjcaLMh44zXQlEiQC7u1MxAIlgsfU/ao4PL9him/8OuTNNmJ3waSHeYUBdaukq2tqpdR6iVyf3RFJnw/Y15IZmSj+Nu+N2vb0isxRkjlSy1geaT/IwDJGPOV/SvW1jZ/9efyMxQpVALskkFTwYRfVndUjKgV2Bp4SG/dLXZRu1yRxezVnS5xtbGJBLvQqaZ9Br4843pjwJCF8DbnGjwNS60dq3xLQKsOPTs5//2ub1IA0JqSf9Y6yymOKT5BKCkGJ4UZK/vR2LtF3pPVjMzFOajLrRmjYZZb/V7LOqcHXfspeFMYEw2+i8Nwqv//S/q7vfOgqWA1HyJbfrjHcj/NxJYBuY7kWtQFBHDMBj6niby5SEfIIqW6quHRCdqx8RbUziYSklGCEzqvOSs+Dw7bP+nhoPFRhhdMAqvYrV0T9oHIRa+96jL/vt+vx9SMBHZEjz0f4VYHEm+UStBGrbqyWwrnxNA/eVQJYO+2vQSu4sC5GASnFhmr0X61KtCZaqve9lAqQaFN/EJQFPnEBUhdxwWsPFffAMJ7Ig1D10vjEO5n/EygKYerIUxiLaLx8yvqOR3jrHCTywIJsmroqIOeBqyl+OkK3N0IZZMX7TL6JcAjvJXvnYpxgQTFExP7twrAPaMaaPdAtCYyY9FxM1BN1AtZyRBG9KG8FQPdAbWbBiSo/Rr2ZYakNyEW8DMn2fWMjXWENvN9kExWg4V+dgfw0pspJB7ddL2GuNsFbMv3VBNP4mbQqzfQVmNKPbCJBjGmkzPvsXvu97B50ttwLD8aTdmgsSKPfwROzibXfidvTciYJlqJ0qF9uBECovHyh1+YRxN1JhzIg5rz2G1SwOFnTh4AmwDJO3fnudIdnRNQR2bbSGJw60yIeDldTJD2FQ3TYLBWITbABKK9UaG/q9oCEF+romdjDUtIzlclDJ3AdVbXau6tZlIoiSeMF0THnVmVrv9Rja3vIlyDF1x27X1SoxBt+DX8z0QbdN1dODK6AoiBlIq56yQRhQVZPZYeOsWLel3UC8nCuBP0YsOXgvJYJpHpkzv8uwoiLJQuKT4gKkR+MzsA7KSce+wDs++X2DjUZ/bblJ0OSwGlptMLTFFKCHd1duPyf+u1F5hB8pYhGVPYBShcNCTlwBZmCtf8x8dhC9aZyHUL2zh67JaVLKJOIDDfAzuZN87sILd6nSHljy7gzSvT3R8UbQyIrYoBlnQfHsqblK9xJyuC6bMJ+bnbpNCNe4+A3Eu3aFHDGa0x4nEShIqO8FLDY2ALtMtCbAfbCt4qPVd+m7zXTPQeXDTy0ERblDEhXgT4CZFOg+e+L+DWItyhiQrwJ8BKAMry+1MFdOLG8iQ9RghD3VkgpqcmxWRiSWz/LS7bRr5x7kS3Vam3bMql1HqJXJ/doksarEOqP5RW+8bPs8oeS8QtDE5yfSynJ0br+VAskDkdiUl7ePYxYnTOVcb0dz2ja5iPJFxlsYOatG22Ii9VMe0Ba3aMpugaQLb+Fv3L1T8QHqwc2DQTil2OT0B4PDj5LMIouPOuhX9QTgdYqYCA/rSjq9vACqKqTpnGNEqznUVpI5NFV9/GQHp9LhD3eRHReCotaz2ul6DU3KhO+fOWjqJk2w6eH9c/D/tL8quwB0wpTsboqYWbcydq12y/YRbUXr5bI5V28pb+uqwOu+OcgZ9cyFeKsvbItHjESv9QwvzeqbkTjyJfcZzd1HgbjBRLorb1LOmcKxNLHw4YG8EXsU9O92quxeuFo/mnjs2xjPSHlf362xu1MgDAeQB2JLZPR+hRdHa30MfUJNXJXU4nmFvf0ZmRhuNfeePSmjwxlTWahgTKggk+AkuzS/b/hsDfxiXOa+VDu0nRQcZFI4r/59L/4vB8zQOjVR+adATqYkrnN6zoMpHhde2teaxt73nrynGxQmx0vJEQHSbTp4ZyaO0a2e1noU9igDys9U42e14BeMBmAmaHcCoyRP2OGKgEEcg6KJiujK+qdpZ6skpvPnq6MDYcz7vZQGZQU+EKylFN4miRBhiwy9aOjbj6vIX8oa7/pTOBHrDwzohIJAs9ngjpWfe81KKi86SuCExIx3VVEhNRQPew5P6qENYCs21cHTHFcQDsbEk5aZIuHuULuUnGrY6Vk7fgFcd4RalVmssPsdCfMaKd4TJvebmvm1XtpihixzlDMEs2uQHNApoA7ab+5+mfTuV+jLhvM0ezvCIFiSn08sVkWHaE4wMkhzYhaZpsmU5T6ncwZDdu8K3avnJUFd49y+ZZFX3rjxENDJgR9kQseHpFnPSOL+W3/kBxoNQAwzCU8DpyaMAPvlK5rNg7DNYI23ZxSd+ZGt9Ohj0Cy+O++j3u2W1UrjkvhOO+J60WFoTaGex6I+Kno4pV0lhHZRPBDvZuAL/OBS6bSERxQDNtFoBpSPCJG6hBknVaXGX6bbbQb/xwCV2ZWhMrzXTvecEl+ZpcXLqxZ9HSezN23ZuqlVoPYgiikiXTGKye3QjSQwCiDMp85QHkpscoHc+127jNmapKBv43faEfy5uZVLPHmrkt0jV/1nXa89O/hquUQxMVVnyMIuVqgIz4PNeY/3gIPGXRewRYxA5pAd5LbhVoafz0lqjjiiG5u+blGwgBaZvYsiUEUCvkjz1SmBfg3QLDfQU3GzHhH3xTtgZJkiUyDpUooqmRETbQrgZ7ev6mUyYwArAtzrFKBPmk3ApNCoZ6ONf8a3yJ0V7GTYdUVLBX4XqLK1fjpbqzKeQejF2EZfJHop1Ul0RZ05wm1NnjwX0dLTlzDDKOxM7AOmrlusyN3+5piOZkMKfcbw8tNycVmqCECUVaFB5fsToY4Zr09EnfILZUOH+qrzWP39zPjnsibvulvtb4LRuIIcto0Oe5GKw43VW2Sb1MFD7+Ba/ClkJiiz6KFtT7fxXjKdBy6p6GWeAG1b6nzKmc829B8j+K7FxB0TM7jZ9njZ6a9zMWxMPQLlEisfCH9cBFWUeo7Mv9DtH0GVKoDrmKFKoBinT6S3F+DO50uMXz18mdy2b9WYu9C+btGU2zjxmfzrbRLqe6LNjNNthLwpG99H9UJ8pSRdvwpm8duKvIjOXtcjy4y0TPNNlGlRY+8L18YyrXAfRLMBn/J9lHeBQEE4sTKYamfbxEgykGTuZIGg+ruhg3sD7ldDvW36y+JXj9IlrI96CExAVIwiCUIUkzCc1HuvvWskFY/ozLgzO2HIO7oQjATChJ9Qpvk3VCyWiKSi4rn7kSrZCxSsBfy500mAXnSkfDHMA8SZamePknAxHrv0XgwsuW/YZ16yyklX6yAv2LYIykOUef9fv//baQzToBTff/xq8p/MaBbjuLuYd6a1lJBcH17utPPvgjkSe/P5E4q1eIYNgvnZtfU8h37u+6UrGpa+j9rNctAs9YeoTKI6n56dECOEn5aTqAwcpH2nSz1PryUBGDlru5qopWOnLaUyvjQ9tYhT3/uQH9qqqK84VoP5Sc+IoUWg4YH7bDgvpIDTLWGsKpucv2deYhVzKYeDseXxynxh6Hm58rJmkuONYT9wt3Gi2BFj1dVHkp0NP1GVl1go6ODpVzJzt7joRsI3RAR/yJJUZlZBt3dHihG4H6xmuc1yMSZuZsyumwZhPz2UWdW1CdsRZ2xo5E1X0CIPxXiZEZfR+TF44mRctytFbHflZDfjMpeIkWfMZYJXcbLf8UnHOLWFbGzrTxqnPyT7ciYcBOQ50OrBxQuoQ6UMqAPV6YE7ZYht/HBZzKes/E1+lksg2XPFio7MNAyVvY7CGt1PbaViEa6yHG33UKxvDyQWJ8i/BF09vk69AD1u24LM42+/jKg2gBqh3Qte84Woog1JkeVzFCCE5LdArAI3ASjXIJ1Q0QcvJ/wGwBk4E4e4NFWit4mMWKJQ+g3h6vhTplki0ACEfhPxpwQihXsY/VR+zoZ0CfV7R71zHHvFEud61Z3WmAwEd/+R/Fdi4g7QFWyVbqojUXN36GNNOeYFBqGzm6ZLB9VgWUV4L4JodllRO+4KwE1xBFI/YXnYxf4vC1h5l3tOeL+DR3819BFxEnWwzklHNUc6L62bXkKQftHlLB0oJwMaOegMKOJpUCAMyfMfpmmhLN7xmCa3DyEnylJPdOsFuQffuGmIlmAzQODXu9XQVTPApbXRSNZJStIIz33coJsSV8mT+r5xdAJ1IXzKaAxix5nf3of/ejUYLZwgOxdP+CoSUFnt3O+M7BcRi6DpnoMgM2KfrAqIxU6ArG4ukdX8G52tbiwcy1s2s6jOuqmOu6tiPZS/KWkJOUI5TgFhfvoN1pfqLCOmny3MtYH40nevzEZUquqt6ThajWbjE+KBJKBqbRSURLZqS9uj42XQ3nJZAwgGeXRQRnfVz2nYa//+ou0t1DctXbGq9o1xlQjxu0OUnJlqlzpmCBZVMnRrqVDus2nyJUJ7I3uqDLpM67EhRZMrQXuhFwPIw82sojhQhfzWB7SG7sfw+e1ayriTgHPIUyU/H2XpRW8DPv9dUW0Jjvl6YHYMdUm+grGmuruGUZcD+9z4r+bLI44tCiCGqWNuRqY7LgvYE6Ih0WHi0XXfkGAHPiQiti/Rg+eQQ2nkiHssmySQ6fu2GZihFwSthuYBnRSp6tCmgTyzOz1pBGcPan4rcFd+dJ8AeWvrvW//Ey++bOu3oQBupmTPwv+p2/YBHth62m+XeWI7E/MHjxexhxY365L5PHct7FUS8E8Y26apezW+fM/Fsbbfy7HU602OfrFNOTeIF6alPZMBZi6guGCypjxeulk6YJ/dt1HNwsg023Nj66LhMC5tDpxbHAEdSR/Qv2TZmkOTKF3BGcA0z0+91EGloLl1qITXPyy5Glaotfeg86GARm0KN1S2Amywh/2ExPS3DmqeqEi4a8GNqoei3LJkocfc+BHy23t3yvZP3eaTzJ6FGCE3CNVF33g0TYMxhFeUyq2sJENiT+larmjK6mbd6vYuRQMMKHI78wUDqDErwjJbN3QcD/ZY6gXO+RoEKCOLGC6f/sHmooVQcDAzbrTGyjcdbo8anXbeimLqtsH9mcvl/ipiQz+r89mPu/WIK/uEZSbgUcsKd5He9wyGj5OkWEiAI/WWT40Mq3hQsXmwCvhu0wEsm6H+odP8EB34ISaxsJW/6L3znsbwc7SWCAAT9UfLPKSNKKtjsI0vwIBaylgaKFDST5PNiES49Yxl0lBcj3rsIODuwwH3pl/bP86dBwhP7Oa+vNk8VKgtXyd2bGL+sh1t6zCPMDAqdebZXbQz6CbBxhtLY2RcSsdqquQ5mpUWow0nvy+LArssboLXNSQV2nxy9qLEpgK0UXBviM4erYKiaKo00Cs+rC//80QGAsBZ75dzHBlT0kdvOb/nprLPhWf84ZDn/mLEmZ6V7Ia1KEWqzjGTa14qNrE6HAaZxdkoEyfRJj6A4a/PJjchIgcCJoLMuFJWLSG33haOSiPK9T27/uTmM14L2SnOyAisndroA5A4mFTBt+tZUxL/P2g47C178rJRu9rPDUrJEX+4tOJI1qCq9NYWvDxWVfFdWIVf0NDqgZogUQ/2WCdxe0Uv1QiFdbgeo/vwKXTiEX9LzLM9JjY1rg0UgiB4mT26EaSGAUO9ApNKSv9cpdDWnqEYYingvPaeMMFmnnO3eYTqu3zroXJ52Gnwh9tKMTy9w0ZeN1qc/44s+Je36w6+7+dFjj9/QxaZ039N1aMtFd+qdmH3kMvBD1o3SFws6lKyIT9je95GgpVptO2+a6tsQOq2v8OZfh5TDp8WpjXIdIZnfnApE7KAAi+3nPKc8+XuezHTkWv7pyPWIi7oP5mVSCE2UrG4cgI0QLXotqyXBy4YR424G/564DUkPmBOK7W0R6DfVvHnz+v53wxuEBuZZkb6vosv2KC5c+/pR/aap2M2+MYlbhr+ywNf3CHukeUSj0ajYSqzMRVVLgJ1wawH3H7Gahacc/dsDToL4UUD1TtaF9VR0KtjfYwVBQXB5+Z5quTSaVBXXKmRyv2LCLFNygS80wkSWzDizf9bjxyot+BgXRhyS6tEHzSiyh7WU+uIU7NodSomiN99njY740GIENnrOSAhYvuz7ud4dbdyuJG3/dCEsYSVrQTTcuee1kPq0/VmEag/6TA8h8BTh9RqfGt0yGH551IVtfQbGuf8IQ36X1nqFpIJsYXZmMzwEcHJgqiLTBbkyr2a4fNKqpru4m0B097PWzKl0h6lByV1O632iP59gFL7lxhzqQ8QMqv/NFWALjvuPX0hr8mFCmzuUToyRTbYFytL2GAymDFxCBXMduNFlYMbFpm8KPN8Dqi9rkec1bpRTvNu+1C2b/qAml1PAxnQR1yoLINGyscl3giGQFfATKRtDp4MTaczzB2OZlxcJYLowkyk6703StfHkHGXEnQzQxfXTzc6ESMTgh3LrNKvE8GtjCQHgJrj01ydoYlFa09bmM3pR+rsTh2SrbT+BE2xyVjXcekrdXe/0nQsv/zBQS7ehSPhyRcv60l0ixu33DDgHh4rbaesxQpwQA8A+AH8OF5D6UR6TQQXnJDi2ZWUfUUED89Uz/J98CQL0pELFA1UfIBtShCvJ+/Uie4g4hj3NbjPXXT737XkWEPHfd1LcWjSEtXq0Zvizoy2uBsN+1DAFMa2SkZML5kVObigaa+RJ2uGzVJYuk1x71PfuaoFHB4GU5kUc6EHBI5Vkp3/oIsM/EqE1c30i9jcFYJIRhbhKfw19wz5k9AVrxa40VcA9QJE7UGDQLtweAj7y4uC4putrdpk6Uw1xl9TLMlMMMrErLENq3o1x/gnLmiA1qB7lZDDi4knbpzfx/QLQ/7UcF1hCloN4oC65jT71v1uQoQA94xXBrAqthaKLne2wVw7WiQ+blzurprSp2iB10B3C6Ln0E9nxOxQ/+z8dLbjADxxyvbAAAAAAAAAAA==" alt="GreenLIB" class="logo-img">
             <div class="divider"></div>
             <div class="header-title">BLACK MASS FINANCIAL CALCULATOR</div>
         </div>
-    </div>
+    </header>
 
+    <main>
     <div class="container">
         <div class="header">
             <h1>Value Comparison Tool</h1>
             <p>Compare realization values across processing routes with real-time adjustable inputs</p>
         </div>
         
-        <div class="tabs" role="tablist">
-            <button class="tab active" role="tab" aria-selected="true" aria-controls="us1" id="tab-us1">US Scenario 1</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="us2" id="tab-us2">US Scenario 2</button>
-            <button class="tab" role="tab" aria-selected="false" aria-controls="eu" id="tab-eu">EU Scenario</button>
+        <div class="tabs" role="tablist" aria-orientation="horizontal">
+            <button class="tab active" role="tab" aria-selected="true" aria-controls="us1" id="tab-us1">US</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="eu" id="tab-eu">EU</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="us2" id="tab-us2">Profit-Sharing</button>
         </div>
         
         <div class="content">
-            <!-- US Scenario 1 -->
-            <div id="us1" class="section active" role="tabpanel" aria-labelledby="tab-us1">
+            <!-- US -->
+            <div id="us1" class="section active" role="tabpanel" aria-labelledby="tab-us1" tabindex="0">
                 <div class="section-title">METAL PRICES ($/t)</div>
                 <table class="input-table">
+                    <caption class="sr-only">Metal price inputs for US calculation</caption>
                     <thead>
                         <tr>
                             <th>Metal</th>
@@ -730,46 +761,46 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Nickel (LME)</td>
+                            <th scope="row"><label for="us1-ni-price">Nickel (LME)</label></th>
                             <td>$15,000-20,000/t</td>
-                            <td><input type="number" id="us1-ni-price" value="15000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-ni-price" value="15000" step="100" aria-describedby="us1-ni-unit"></td>
+                            <td id="us1-ni-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Cobalt (MB Standard)</td>
+                            <th scope="row"><label for="us1-co-price">Cobalt (MB Standard)</label></th>
                             <td>$40,000-50,000/t</td>
-                            <td><input type="number" id="us1-co-price" value="42000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-co-price" value="42000" step="100" aria-describedby="us1-co-unit"></td>
+                            <td id="us1-co-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Lithium Carbonate (Technical Grade)</td>
+                            <th scope="row"><label for="us1-li-price">Lithium Carbonate (Technical Grade)</label></th>
                             <td>$6,000-10,000/t</td>
-                            <td><input type="number" id="us1-li-price" value="7000" step="100"></td>
-                            <td>$/t Li₂CO₃</td>
+                            <td><input type="number" id="us1-li-price" value="7000" step="100" aria-describedby="us1-li-unit"></td>
+                            <td id="us1-li-unit">$/t Li₂CO₃</td>
                         </tr>
                         <tr>
-                            <td>Graphite (Recycled Graphite)</td>
+                            <th scope="row"><label for="us1-graphite-price">Graphite (Recycled Graphite)</label></th>
                             <td>$400-2,000/t</td>
-                            <td><input type="number" id="us1-graphite-price" value="1500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-graphite-price" value="1500" step="100" aria-describedby="us1-graphite-unit"></td>
+                            <td id="us1-graphite-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Lithium Fluoride (LiF)</td>
+                            <th scope="row"><label for="us1-lif-price">Lithium Fluoride (LiF)</label></th>
                             <td>$4,000-6,000/t</td>
-                            <td><input type="number" id="us1-lif-price" value="5000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-lif-price" value="5000" step="100" aria-describedby="us1-lif-unit"></td>
+                            <td id="us1-lif-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Aluminum</td>
+                            <th scope="row"><label for="us1-al-price">Aluminum</label></th>
                             <td>$2,000-3,000/t</td>
-                            <td><input type="number" id="us1-al-price" value="2500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-al-price" value="2500" step="100" aria-describedby="us1-al-unit"></td>
+                            <td id="us1-al-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Copper</td>
+                            <th scope="row"><label for="us1-cu-price">Copper</label></th>
                             <td>$5,000-6,000/t</td>
-                            <td><input type="number" id="us1-cu-price" value="5500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us1-cu-price" value="5500" step="100" aria-describedby="us1-cu-unit"></td>
+                            <td id="us1-cu-unit">$/t</td>
                         </tr>
                     </tbody>
                 </table>
@@ -964,12 +995,235 @@
                 </table>
                 
                                 
-                <button class="calculate-btn" onclick="calculateUS1()">🔬 Calculate US Scenario 1</button>
+                <button class="calculate-btn" data-calc="us1">🔬 Calculate US</button>
                 
                 <div id="us1-results"></div>
             </div>
             
-            <!-- US Scenario 2 -->
+
+            <!-- EU -->
+            <div id="eu" class="section" role="tabpanel" aria-labelledby="tab-eu" hidden>
+                <div class="section-title">METAL PRICES ($/t)</div>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Metal</th>
+                            <th style="width: 25%; text-align: center;">Benchmark</th>
+                            <th style="width: 25%;">Input Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="eu-ni-price">Nickel (LME)</label></th>
+                            <td>$15,000-20,000/t</td>
+                            <td><input type="number" id="eu-ni-price" value="15000" step="100" aria-describedby="eu-ni-unit"></td>
+                            <td id="eu-ni-unit">$/t</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-co-price">Cobalt (MB Standard)</label></th>
+                            <td>$40,000-50,000/t</td>
+                            <td><input type="number" id="eu-co-price" value="42000" step="100" aria-describedby="eu-co-unit"></td>
+                            <td id="eu-co-unit">$/t</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-li-price">Lithium Carbonate (Technical Grade)</label></th>
+                            <td>$6,000-10,000/t</td>
+                            <td><input type="number" id="eu-li-price" value="7000" step="100" aria-describedby="eu-li-unit"></td>
+                            <td id="eu-li-unit">$/t Li₂CO₃</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-graphite-price">Graphite (Recycled Graphite)</label></th>
+                            <td>$400-2,000/t</td>
+                            <td><input type="number" id="eu-graphite-price" value="1500" step="100" aria-describedby="eu-graphite-unit"></td>
+                            <td id="eu-graphite-unit">$/t</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-lif-price">Lithium Fluoride (LiF)</label></th>
+                            <td>$4,000-6,000/t</td>
+                            <td><input type="number" id="eu-lif-price" value="5000" step="100" aria-describedby="eu-lif-unit"></td>
+                            <td id="eu-lif-unit">$/t</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-al-price">Aluminum</label></th>
+                            <td>$2,000-3,000/t</td>
+                            <td><input type="number" id="eu-al-price" value="2500" step="100" aria-describedby="eu-al-unit"></td>
+                            <td id="eu-al-unit">$/t</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="eu-cu-price">Copper</label></th>
+                            <td>$5,000-6,000/t</td>
+                            <td><input type="number" id="eu-cu-price" value="5500" step="100" aria-describedby="eu-cu-unit"></td>
+                            <td id="eu-cu-unit">$/t</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="section-title">FEED COMPOSITION (%)</div>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th style="width: 25%; text-align: center;">Typical Range</th>
+                            <th style="width: 25%;">Input Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nickel (Ni)</td>
+                            <td>10-25%</td>
+                            <td><input type="number" id="eu-ni-content" value="15" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Cobalt (Co)</td>
+                            <td>5-15%</td>
+                            <td><input type="number" id="eu-co-content" value="8" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Lithium (Li)</td>
+                            <td>3-8%</td>
+                            <td><input type="number" id="eu-li-content" value="5" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbon (C)</td>
+                            <td>30-40%</td>
+                            <td><input type="number" id="eu-c-content" value="35" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Fluorine (F)</td>
+                            <td>0.5-2%</td>
+                            <td><input type="number" id="eu-f-content" value="1" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Aluminum (Al)</td>
+                            <td>3-8%</td>
+                            <td><input type="number" id="eu-al-content" value="5" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Copper (Cu)</td>
+                            <td>1-3%</td>
+                            <td><input type="number" id="eu-cu-content" value="2" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="eu-comp-msg" class="comp-msg" aria-live="polite"></div>
+                
+                <div class="section-title">RECOVERY RATES (%)</div>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Process Stream</th>
+                            <th style="width: 25%; text-align: center;">Recovery Targets</th>
+                            <th style="width: 25%;">Input Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ni/Co Recovery</td>
+                            <td>≥97%</td>
+                            <td><input type="number" id="eu-nico-recovery" value="93" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Lithium Recovery</td>
+                            <td>≥80%</td>
+                            <td><input type="number" id="eu-li-recovery" value="80" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbon Recovery</td>
+                            <td>≥95%</td>
+                            <td><input type="number" id="eu-c-recovery" value="85" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Fluorine Recovery</td>
+                            <td>≥90%</td>
+                            <td><input type="number" id="eu-f-recovery" value="80" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Al/Cu Recovery</td>
+                            <td>≥97%</td>
+                            <td><input type="number" id="eu-alcu-recovery" value="85" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="section-title">PROCESSING PARAMETERS</div>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th style="width: 25%; text-align: center;">Typical Range</th>
+                            <th style="width: 25%;">Input Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GreenLIB Processing Fee</td>
+                            <td>$700-1,400/t</td>
+                            <td><input type="number" id="eu-processing-fee" value="1050" step="10"></td>
+                            <td>$/t</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity Reservation Fee</td>
+                            <td>$100-200/t</td>
+                            <td><input type="number" id="eu-capacity-fee" value="150" step="10"></td>
+                            <td>$/t</td>
+                        </tr>
+                        <tr>
+                            <td>GreenLIB all-in logistics and compliance</td>
+                            <td>$100-200/t</td>
+                            <td><input type="number" id="eu-greenlib-transport" value="150" step="10"></td>
+                            <td>$/t</td>
+                        </tr>
+
+                        <tr>
+                            <td>Export all-in logistics and compliance (CIF Asia)</td>
+                            <td>$600-800/t</td>
+                            <td><input type="number" id="eu-export-transport" value="700" step="10"></td>
+                            <td>$/t</td>
+                        </tr>
+                        <tr>
+                            <td>Export Payability (Ni/Co)</td>
+                            <td>55-70%</td>
+                            <td><input type="number" id="eu-export-payability" value="65" step="1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>GreenLIB Ni/Co Payability</td>
+                            <td>80-90%</td>
+                            <td><input type="number" id="eu-greenlib-payability" value="85" step="1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Annual Volume</td>
+                            <td>1,000-10,000</td>
+                            <td><input type="number" id="eu-volume" value="10000" step="100"></td>
+                            <td>tonnes/yr</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                                
+                <button class="calculate-btn" data-calc="eu">🔬 Calculate EU</button>
+                
+                <div id="eu-results"></div>
+            </div>
+
+            <!-- Profit-Sharing -->
             <div id="us2" class="section" role="tabpanel" aria-labelledby="tab-us2" hidden>
                 <div class="section-title">METAL PRICES ($/t)</div>
                 <table class="input-table">
@@ -983,46 +1237,46 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Nickel (LME)</td>
+                            <th scope="row"><label for="us2-ni-price">Nickel (LME)</label></th>
                             <td>$15,000-20,000/t</td>
-                            <td><input type="number" id="us2-ni-price" value="15000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-ni-price" value="15000" step="100" aria-describedby="us2-ni-unit"></td>
+                            <td id="us2-ni-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Cobalt (MB Standard)</td>
+                            <th scope="row"><label for="us2-co-price">Cobalt (MB Standard)</label></th>
                             <td>$40,000-50,000/t</td>
-                            <td><input type="number" id="us2-co-price" value="42000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-co-price" value="42000" step="100" aria-describedby="us2-co-unit"></td>
+                            <td id="us2-co-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Lithium Carbonate (Technical Grade)</td>
+                            <th scope="row"><label for="us2-li-price">Lithium Carbonate (Technical Grade)</label></th>
                             <td>$6,000-10,000/t</td>
-                            <td><input type="number" id="us2-li-price" value="7000" step="100"></td>
-                            <td>$/t Li₂CO₃</td>
+                            <td><input type="number" id="us2-li-price" value="7000" step="100" aria-describedby="us2-li-unit"></td>
+                            <td id="us2-li-unit">$/t Li₂CO₃</td>
                         </tr>
                         <tr>
-                            <td>Graphite (Recycled Graphite)</td>
+                            <th scope="row"><label for="us2-graphite-price">Graphite (Recycled Graphite)</label></th>
                             <td>$400-2,000/t</td>
-                            <td><input type="number" id="us2-graphite-price" value="1500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-graphite-price" value="1500" step="100" aria-describedby="us2-graphite-unit"></td>
+                            <td id="us2-graphite-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Lithium Fluoride (LiF)</td>
+                            <th scope="row"><label for="us2-lif-price">Lithium Fluoride (LiF)</label></th>
                             <td>$4,000-6,000/t</td>
-                            <td><input type="number" id="us2-lif-price" value="5000" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-lif-price" value="5000" step="100" aria-describedby="us2-lif-unit"></td>
+                            <td id="us2-lif-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Aluminum</td>
+                            <th scope="row"><label for="us2-al-price">Aluminum</label></th>
                             <td>$2,000-3,000/t</td>
-                            <td><input type="number" id="us2-al-price" value="2500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-al-price" value="2500" step="100" aria-describedby="us2-al-unit"></td>
+                            <td id="us2-al-unit">$/t</td>
                         </tr>
                         <tr>
-                            <td>Copper</td>
+                            <th scope="row"><label for="us2-cu-price">Copper</label></th>
                             <td>$5,000-6,000/t</td>
-                            <td><input type="number" id="us2-cu-price" value="5500" step="100"></td>
-                            <td>$/t</td>
+                            <td><input type="number" id="us2-cu-price" value="5500" step="100" aria-describedby="us2-cu-unit"></td>
+                            <td id="us2-cu-unit">$/t</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1192,234 +1446,13 @@
                 </table>
                 
                                 
-                <button class="calculate-btn" onclick="calculateUS2()">🔬 Calculate US Scenario 2</button>
+                <button class="calculate-btn" data-calc="us2">🔬 Calculate Profit-Sharing</button>
                 
                 <div id="us2-results"></div>
             </div>
-            
-            <!-- EU Scenario -->
-            <div id="eu" class="section" role="tabpanel" aria-labelledby="tab-eu" hidden>
-                <div class="section-title">METAL PRICES ($/t)</div>
-                <table class="input-table">
-                    <thead>
-                        <tr>
-                            <th>Metal</th>
-                            <th style="width: 25%; text-align: center;">Benchmark</th>
-                            <th style="width: 25%;">Input Value</th>
-                            <th>Unit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nickel (LME)</td>
-                            <td>$15,000-20,000/t</td>
-                            <td><input type="number" id="eu-ni-price" value="15000" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Cobalt (MB Standard)</td>
-                            <td>$40,000-50,000/t</td>
-                            <td><input type="number" id="eu-co-price" value="42000" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Lithium Carbonate (Technical Grade)</td>
-                            <td>$6,000-10,000/t</td>
-                            <td><input type="number" id="eu-li-price" value="7000" step="100"></td>
-                            <td>$/t Li₂CO₃</td>
-                        </tr>
-                        <tr>
-                            <td>Graphite (Recycled Graphite)</td>
-                            <td>$400-2,000/t</td>
-                            <td><input type="number" id="eu-graphite-price" value="1500" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Lithium Fluoride (LiF)</td>
-                            <td>$4,000-6,000/t</td>
-                            <td><input type="number" id="eu-lif-price" value="5000" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Aluminum</td>
-                            <td>$2,000-3,000/t</td>
-                            <td><input type="number" id="eu-al-price" value="2500" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Copper</td>
-                            <td>$5,000-6,000/t</td>
-                            <td><input type="number" id="eu-cu-price" value="5500" step="100"></td>
-                            <td>$/t</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="section-title">FEED COMPOSITION (%)</div>
-                <table class="input-table">
-                    <thead>
-                        <tr>
-                            <th>Element</th>
-                            <th style="width: 25%; text-align: center;">Typical Range</th>
-                            <th style="width: 25%;">Input Value</th>
-                            <th>Unit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nickel (Ni)</td>
-                            <td>10-25%</td>
-                            <td><input type="number" id="eu-ni-content" value="15" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Cobalt (Co)</td>
-                            <td>5-15%</td>
-                            <td><input type="number" id="eu-co-content" value="8" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Lithium (Li)</td>
-                            <td>3-8%</td>
-                            <td><input type="number" id="eu-li-content" value="5" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Carbon (C)</td>
-                            <td>30-40%</td>
-                            <td><input type="number" id="eu-c-content" value="35" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Fluorine (F)</td>
-                            <td>0.5-2%</td>
-                            <td><input type="number" id="eu-f-content" value="1" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Aluminum (Al)</td>
-                            <td>3-8%</td>
-                            <td><input type="number" id="eu-al-content" value="5" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Copper (Cu)</td>
-                            <td>1-3%</td>
-                            <td><input type="number" id="eu-cu-content" value="2" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="eu-comp-msg" class="comp-msg" aria-live="polite"></div>
-                
-                <div class="section-title">RECOVERY RATES (%)</div>
-                <table class="input-table">
-                    <thead>
-                        <tr>
-                            <th>Process Stream</th>
-                            <th style="width: 25%; text-align: center;">Recovery Targets</th>
-                            <th style="width: 25%;">Input Value</th>
-                            <th>Unit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ni/Co Recovery</td>
-                            <td>≥97%</td>
-                            <td><input type="number" id="eu-nico-recovery" value="93" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Lithium Recovery</td>
-                            <td>≥80%</td>
-                            <td><input type="number" id="eu-li-recovery" value="80" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Carbon Recovery</td>
-                            <td>≥95%</td>
-                            <td><input type="number" id="eu-c-recovery" value="85" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Fluorine Recovery</td>
-                            <td>≥90%</td>
-                            <td><input type="number" id="eu-f-recovery" value="80" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Al/Cu Recovery</td>
-                            <td>≥97%</td>
-                            <td><input type="number" id="eu-alcu-recovery" value="85" step="0.1"></td>
-                            <td>%</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="section-title">PROCESSING PARAMETERS</div>
-                <table class="input-table">
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th style="width: 25%; text-align: center;">Typical Range</th>
-                            <th style="width: 25%;">Input Value</th>
-                            <th>Unit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>GreenLIB Processing Fee</td>
-                            <td>$700-1,400/t</td>
-                            <td><input type="number" id="eu-processing-fee" value="1050" step="10"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Capacity Reservation Fee</td>
-                            <td>$100-200/t</td>
-                            <td><input type="number" id="eu-capacity-fee" value="150" step="10"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>GreenLIB all-in logistics and compliance</td>
-                            <td>$100-200/t</td>
-                            <td><input type="number" id="eu-greenlib-transport" value="150" step="10"></td>
-                            <td>$/t</td>
-                        </tr>
-
-                        <tr>
-                            <td>Export all-in logistics and compliance (CIF Asia)</td>
-                            <td>$600-800/t</td>
-                            <td><input type="number" id="eu-export-transport" value="700" step="10"></td>
-                            <td>$/t</td>
-                        </tr>
-                        <tr>
-                            <td>Export Payability (Ni/Co)</td>
-                            <td>55-70%</td>
-                            <td><input type="number" id="eu-export-payability" value="65" step="1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>GreenLIB Ni/Co Payability</td>
-                            <td>80-90%</td>
-                            <td><input type="number" id="eu-greenlib-payability" value="85" step="1"></td>
-                            <td>%</td>
-                        </tr>
-                        <tr>
-                            <td>Annual Volume</td>
-                            <td>1,000-10,000</td>
-                            <td><input type="number" id="eu-volume" value="10000" step="100"></td>
-                            <td>tonnes/yr</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                                
-                <button class="calculate-btn" onclick="calculateEU()">🔬 Calculate EU Scenario</button>
-                
-                <div id="eu-results"></div>
-            </div>
         </div>
     </div>
+    </main>
 
     <script>
         // Tab switching with proper accessibility (no reliance on implicit event)
@@ -1439,6 +1472,7 @@
                     document.querySelectorAll('.section').forEach(p => {
                         p.classList.remove('active');
                         p.setAttribute('hidden', '');
+                        p.removeAttribute('tabindex');
                     });
                     
                     // Activate selected tab
@@ -1446,10 +1480,11 @@
                     btn.setAttribute('aria-selected', 'true');
                     btn.removeAttribute('tabindex');
                     
-                    // Show selected panel
+                    // Show selected panel and make it focusable
                     const panel = document.getElementById(id);
                     panel.classList.add('active');
                     panel.removeAttribute('hidden');
+                    panel.setAttribute('tabindex', '0');
                 });
             });
         });
@@ -1754,14 +1789,17 @@ function calculateUS1() {
                         <div class="scenario-metric">
                             <span>GreenLIB Net:</span>
                             <span>${formatCurrency(
-                                (niContent * nicoRecovery * greenlibPayability * 12000) +
-                                (coContent * nicoRecovery * greenlibPayability * 30000) +
-                                (liContent * liRecovery * 5.32 * 5000) +
-                                (cContent * cRecovery * graphitePrice) +
-                                (fContent * fRecovery * 1.365 * lifPrice) +
-                                (alContent * alcuRecovery * alPrice) +
-                                (cuContent * alcuRecovery * cuPrice) -
-                                processingFee - capacityFee - greenlibTransport - basel
+                                (() => {
+                                    const grossBear = (niContent * nicoRecovery * greenlibPayability * 12000) +
+                                        (coContent * nicoRecovery * greenlibPayability * 30000) +
+                                        (liContent * liRecovery * 5.32 * 5000) +
+                                        (cContent * cRecovery * graphitePrice) +
+                                        (fContent * fRecovery * 1.365 * lifPrice) +
+                                        (alContent * alcuRecovery * alPrice) +
+                                        (cuContent * alcuRecovery * cuPrice);
+                                    const tariffBear = cusmaQualified ? 0 : grossBear * tariffRate;
+                                    return grossBear - processingFee - capacityFee - greenlibTransport - basel - tariffBear;
+                                })()
                             )}/t</span>
                         </div>
                     </div>
@@ -1797,14 +1835,17 @@ function calculateUS1() {
                         <div class="scenario-metric">
                             <span>GreenLIB Net:</span>
                             <span>${formatCurrency(
-                                (niContent * nicoRecovery * greenlibPayability * 20000) +
-                                (coContent * nicoRecovery * greenlibPayability * 55000) +
-                                (liContent * liRecovery * 5.32 * 12000) +
-                                (cContent * cRecovery * graphitePrice) +
-                                (fContent * fRecovery * 1.365 * lifPrice) +
-                                (alContent * alcuRecovery * alPrice) +
-                                (cuContent * alcuRecovery * cuPrice) -
-                                processingFee - capacityFee - greenlibTransport - basel
+                                (() => {
+                                    const grossBull = (niContent * nicoRecovery * greenlibPayability * 20000) +
+                                        (coContent * nicoRecovery * greenlibPayability * 55000) +
+                                        (liContent * liRecovery * 5.32 * 12000) +
+                                        (cContent * cRecovery * graphitePrice) +
+                                        (fContent * fRecovery * 1.365 * lifPrice) +
+                                        (alContent * alcuRecovery * alPrice) +
+                                        (cuContent * alcuRecovery * cuPrice);
+                                    const tariffBull = cusmaQualified ? 0 : grossBull * tariffRate;
+                                    return grossBull - processingFee - capacityFee - greenlibTransport - basel - tariffBull;
+                                })()
                             )}/t</span>
                         </div>
                     </div>
@@ -1814,7 +1855,7 @@ function calculateUS1() {
             document.getElementById('us1-results').innerHTML = resultsHTML;
         }
         
-        // US Scenario 2 Calculation
+        // Profit-Sharing Calculation
         function calculateUS2() {
             const niPrice = parseFloat(document.getElementById('us2-ni-price').value);
             const coPrice = parseFloat(document.getElementById('us2-co-price').value);
@@ -2064,7 +2105,7 @@ function calculateUS1() {
             document.getElementById('us2-results').innerHTML = resultsHTML;
         }
         
-        // EU Scenario Calculation
+        // EU Calculation
         function calculateEU() {
             const niPrice = parseFloat(document.getElementById('eu-ni-price').value);
             const coPrice = parseFloat(document.getElementById('eu-co-price').value);
@@ -2394,6 +2435,38 @@ function calculateUS1() {
             
             document.getElementById('eu-results').innerHTML = resultsHTML;
         }
+        
+        // ===== EVENT LISTENERS (replacing inline onclick) =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Calculate button listeners
+            document.querySelectorAll('[data-calc]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const calc = btn.getAttribute('data-calc');
+                    if (calc === 'us1') calculateUS1();
+                    else if (calc === 'us2') calculateUS2();
+                    else if (calc === 'eu') calculateEU();
+                });
+            });
+            
+            // Keyboard navigation for tabs
+            const tabs = [...document.querySelectorAll('[role="tab"]')];
+            const tablist = document.querySelector('[role="tablist"]');
+            
+            tablist.addEventListener('keydown', (e) => {
+                const i = tabs.indexOf(document.activeElement);
+                if (i < 0) return;
+                let next = i;
+                if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+                if (e.key === 'ArrowLeft')  next = (i - 1 + tabs.length) % tabs.length;
+                if (e.key === 'Home') next = 0;
+                if (e.key === 'End')  next = tabs.length - 1;
+                if (next !== i) { 
+                    e.preventDefault(); 
+                    tabs[next].click(); 
+                    tabs[next].focus(); 
+                }
+            });
+        });
         
         // Auto-calculate on page load
         window.onload = function() {
