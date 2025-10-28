@@ -743,6 +743,8 @@
             <button class="tab active" role="tab" aria-selected="true" aria-controls="us1" id="tab-us1">US</button>
             <button class="tab" role="tab" aria-selected="false" aria-controls="eu" id="tab-eu">EU</button>
             <button class="tab" role="tab" aria-selected="false" aria-controls="us2" id="tab-us2">Profit-Sharing</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="wc" id="tab-wc">Working Capital</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="lfp" id="tab-lfp">LFP Purchase</button>
         </div>
         
         <div class="content">
@@ -1450,6 +1452,104 @@
                 
                 <div id="us2-results"></div>
             </div>
+
+            <!-- Working Capital -->
+            <div id="wc" class="section" role="tabpanel" aria-labelledby="tab-wc" hidden>
+                <div class="section-title">WORKING CAPITAL ADVANTAGE</div>
+                <p id="wc-summary" style="max-width: 900px; margin: 0 auto 30px; text-align: center; font-size: 15px; color: #5a5a52; line-height: 1.8;">
+                    Despite generating significantly higher annual revenue, GreenLIB's 3.2× faster cash cycle (26 vs 84 days) frees additional capital and reduces tied cash. That means less debt, more throughput, and higher return on equity.
+                </p>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th style="width:25%; text-align:center;">Current Export</th>
+                            <th style="width:25%;">GreenLIB Route</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Annual Revenue</td>
+                            <td><input type="number" id="wc-export-revenue" value="35740000" step="10000"></td>
+                            <td><input type="number" id="wc-greenlib-revenue" value="64780000" step="10000"></td>
+                            <td>$</td>
+                        </tr>
+                        <tr>
+                            <td>Cycle Time <span style="font-size: 12px; color: #888;">(days from shipment to cash receipt)</span></td>
+                            <td><input type="number" id="wc-export-days" value="84" step="1"></td>
+                            <td><input type="number" id="wc-greenlib-days" value="26" step="1"></td>
+                            <td>days</td>
+                        </tr>
+                        <tr>
+                            <td>Annual Throughput</td>
+                            <td colspan="2"><input type="number" id="wc-volume" value="10000" step="100"></td>
+                            <td>t/y</td>
+                        </tr>
+                        <tr>
+                            <td>Interest Rate (cost of capital)</td>
+                            <td colspan="2"><input type="number" id="wc-rate" value="5" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="calculate-btn" data-calc="wc">💵 Calculate Working Capital</button>
+                <div id="wc-results"></div>
+            </div>
+
+            <!-- LFP Purchase -->
+            <div id="lfp" class="section" role="tabpanel" aria-labelledby="tab-lfp" hidden>
+                <div class="section-title">LFP BLACK MASS PURCHASE CALCULATOR</div>
+                <p style="max-width: 900px; margin: 0 auto 30px; text-align: center; font-size: 15px; color: #5a5a52; line-height: 1.8;">
+                    Estimate the fair purchase value of LFP black mass based on lithium assay, contract pricing, and logistics.
+                    Designed for transparent, data-driven sourcing aligned with U.S. and global contract standards.
+                </p>
+                <div class="section-title">CONTRACT INPUTS</div>
+                <table class="input-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th style="width: 25%; text-align: center;">Typical Range</th>
+                            <th style="width: 25%;">Input Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lithium Content (Li)</td>
+                            <td>1–6%</td>
+                            <td><input type="number" id="lfp-li" value="2.5" step="0.1"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Price per tonne per % Li</td>
+                            <td>$60/t/%</td>
+                            <td><input type="number" id="lfp-price" value="60" step="1"></td>
+                            <td>$/t/%</td>
+                        </tr>
+                        <tr>
+                            <td>Tonnage</td>
+                            <td>10–25</td>
+                            <td><input type="number" id="lfp-tonnage" value="20" step="0.1"></td>
+                            <td>t</td>
+                        </tr>
+                        <tr>
+                            <td>Impurity Deduction</td>
+                            <td>0–10%</td>
+                            <td><input type="number" id="lfp-deduction" value="0" step="0.5"></td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Transport & Compliance</td>
+                            <td>$100–600</td>
+                            <td><input type="number" id="lfp-transport" value="300" step="50"></td>
+                            <td>$</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="calculate-btn" data-calc="lfp">💰 Calculate LFP Purchase</button>
+                <div id="lfp-results"></div>
+            </div>
         </div>
     </div>
     </main>
@@ -1851,6 +1951,13 @@ function calculateUS1() {
                     </div>
                 </div>
             `;
+            
+            // Update Working Capital tab with latest US calculation
+            updateWorkingCapitalFromUS(
+                exportNiValue + exportCoValue,  // export gross product value/t
+                greenlibGrossValue,              // GreenLIB gross product value/t
+                volume
+            );
             
             document.getElementById('us1-results').innerHTML = resultsHTML;
         }
@@ -2433,7 +2540,163 @@ function calculateUS1() {
                 </div>
             `;
             
+            // Update Working Capital tab with latest EU calculation
+            updateWorkingCapitalFromEU(
+                exportNiValue + exportCoValue,  // export gross product value/t
+                greenlibGrossValue,              // GreenLIB gross product value/t
+                volume
+            );
+            
             document.getElementById('eu-results').innerHTML = resultsHTML;
+        }
+        
+        // ===== WORKING CAPITAL CALCULATOR =====
+        function calculateWorkingCapital() {
+            const exportRevenue = parseFloat(document.getElementById('wc-export-revenue').value);
+            const greenlibRevenue = parseFloat(document.getElementById('wc-greenlib-revenue').value);
+            const exportDays = parseFloat(document.getElementById('wc-export-days').value);
+            const greenlibDays = parseFloat(document.getElementById('wc-greenlib-days').value);
+            const volume = parseFloat(document.getElementById('wc-volume').value);
+            const rate = parseFloat(document.getElementById('wc-rate').value) / 100;
+            
+            const exportDaily = exportRevenue / 365;
+            const greenlibDaily = greenlibRevenue / 365;
+            const exportWC = exportDaily * exportDays;
+            const greenlibWC = greenlibDaily * greenlibDays;
+            const freed = exportWC - greenlibWC;
+            const savings = freed * rate;
+            const capacity = freed / 2904; // based on net uplift per tonne
+            const wcImprovementPct = (freed / exportWC) * 100;
+            const revenueUplift = ((greenlibRevenue - exportRevenue) / exportRevenue) * 100;
+            const cycleImprovement = exportDays - greenlibDays;
+            
+            document.getElementById('wc-results').innerHTML = `
+                <div class="improvement-banner">
+                    <h2>🏦 WORKING CAPITAL IMPROVEMENT</h2>
+                    <div class="improvement-amount">${formatCurrency(freed)} freed</div>
+                    <div class="improvement-details">
+                        <p><strong>Reduction:</strong> ${wcImprovementPct.toFixed(1)}% less capital tied up</p>
+                        <p><strong>Interest Savings:</strong> ${formatCurrency(savings)} per year @ ${(rate * 100).toFixed(1)}%</p>
+                        <p><strong>Equivalent Extra Capacity:</strong> ${capacity.toLocaleString('en-US', {maximumFractionDigits:0})} t/y</p>
+                        <p><strong>Cycle Time Improvement:</strong> ${cycleImprovement} days faster cash conversion</p>
+                    </div>
+                </div>
+                
+                <div class="projection-card">
+                    <h3>📊 CASH CYCLE COMPARISON</h3>
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Annual Revenue</th>
+                                <th>Cycle Time</th>
+                                <th>Daily Revenue</th>
+                                <th>Working Capital</th>
+                                <th>WC % of Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Current Export</strong></td>
+                                <td>${formatCurrency(exportRevenue)}</td>
+                                <td>${exportDays} days</td>
+                                <td>${formatCurrency(exportDaily)}/day</td>
+                                <td>${formatCurrency(exportWC)}</td>
+                                <td>${((exportWC/exportRevenue)*100).toFixed(1)}%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GreenLIB</strong></td>
+                                <td>${formatCurrency(greenlibRevenue)}</td>
+                                <td>${greenlibDays} days</td>
+                                <td>${formatCurrency(greenlibDaily)}/day</td>
+                                <td>${formatCurrency(greenlibWC)}</td>
+                                <td>${((greenlibWC/greenlibRevenue)*100).toFixed(1)}%</td>
+                            </tr>
+                            <tr class="improvement-row">
+                                <td><strong>IMPROVEMENT</strong></td>
+                                <td><strong>+${formatCurrency(greenlibRevenue - exportRevenue)}</strong><br><span style="font-size: 12px; color: #8BC34A;">(+${revenueUplift.toFixed(1)}%)</span></td>
+                                <td><strong>-${cycleImprovement} days</strong><br><span style="font-size: 12px; color: #8BC34A;">(${((cycleImprovement/exportDays)*100).toFixed(1)}% faster)</span></td>
+                                <td><strong>+${formatCurrency(greenlibDaily - exportDaily)}/day</strong></td>
+                                <td><strong>-${formatCurrency(freed)}</strong><br><span style="font-size: 12px; color: #8BC34A;">(-${wcImprovementPct.toFixed(1)}%)</span></td>
+                                <td><strong>${(((greenlibWC/greenlibRevenue)*100) - ((exportWC/exportRevenue)*100)).toFixed(1)}pp</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(139,195,74,0.1) 0%, rgba(20,83,45,0.05) 100%); border-left: 4px solid #8BC34A; padding: 20px; margin: 30px 0; border-radius: 8px;">
+                    <h4 style="color: #14532D; margin-bottom: 12px; font-size: 16px;">💡 Key Insight: The Working Capital Paradox</h4>
+                    <p style="color: #2d3748; line-height: 1.7; margin: 0;">
+                        Despite generating <strong>+${revenueUplift.toFixed(0)}% more annual revenue</strong>, GreenLIB's route requires <strong>${wcImprovementPct.toFixed(0)}% less working capital</strong> 
+                        because of the <strong>${((exportDays/greenlibDays)).toFixed(1)}× faster cash cycle</strong> (${greenlibDays} vs ${exportDays} days). 
+                        This frees up <strong>${formatCurrency(freed)}</strong> that can be redeployed for growth, debt reduction, or processing an additional 
+                        <strong>${capacity.toLocaleString('en-US', {maximumFractionDigits:0})} tonnes per year</strong>.
+                    </p>
+                </div>
+            `;
+            
+            // ---- Update summary line dynamically ----
+            const summaryEl = document.getElementById('wc-summary');
+            if (summaryEl) {
+                const revenueUpliftPct = ((greenlibRevenue - exportRevenue) / exportRevenue) * 100;
+                const freedMillions = freed / 1_000_000;
+                summaryEl.textContent =
+                    `Despite generating ${revenueUpliftPct.toFixed(0)}% more annual revenue, `
+                    + `GreenLIB's ${(exportDays / greenlibDays).toFixed(1)}× faster cash cycle `
+                    + `(${greenlibDays} vs ${exportDays} days) frees approximately $${freedMillions.toFixed(1)}M `
+                    + `of working capital – a ${wcImprovementPct.toFixed(0)}% reduction in tied cash. `
+                    + `That means less debt, more throughput, and higher return on equity.`;
+            }
+        }
+        
+        // ===== LFP PURCHASE CALCULATOR =====
+        function calculateLFP() {
+            const liPct = parseFloat(document.getElementById('lfp-li').value);
+            const unitRate = parseFloat(document.getElementById('lfp-price').value);
+            const tonnage = parseFloat(document.getElementById('lfp-tonnage').value);
+            const deduction = parseFloat(document.getElementById('lfp-deduction').value) / 100;
+            const transport = parseFloat(document.getElementById('lfp-transport').value);
+            
+            // Core formula
+            const payablePerTonne = liPct * unitRate * (1 - deduction);
+            const totalPayable = payablePerTonne * tonnage - transport;
+            
+            const resultsHTML = `
+                <div class="improvement-banner">
+                    <h2>📦 LFP BLACK MASS PURCHASE RESULT</h2>
+                    <div class="improvement-amount">${formatCurrency(payablePerTonne)} per tonne</div>
+                    <div class="improvement-details">
+                        <p><strong>Total Payable (Shipment):</strong> ${formatCurrency(totalPayable)} (${tonnage} tonnes)</p>
+                        <p><strong>Unit Rate:</strong> $${unitRate}/t/% Li | <strong>Assay:</strong> ${liPct}% Li</p>
+                        ${deduction > 0 ? `<p><strong>Impurity Deduction:</strong> -${(deduction * 100).toFixed(1)}%</p>` : ''}
+                        <p><strong>Transport & Compliance:</strong> -${formatCurrency(transport)}</p>
+                    </div>
+                </div>
+                
+                <div class="projection-card">
+                    <h3>📊 CONTRACT SNAPSHOT</h3>
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Lithium Assay</td><td>${liPct}%</td><td>From lab COA</td></tr>
+                            <tr><td>Unit Rate</td><td>$${unitRate}/t/% Li</td><td>Contract rate</td></tr>
+                            <tr><td>Impurity Deduction</td><td>${(deduction * 100).toFixed(1)}%</td><td>Contractual adjustment</td></tr>
+                            <tr><td>Payable per Tonne</td><td>${formatCurrency(payablePerTonne)}</td><td>Li% × rate × (1 - deduction)</td></tr>
+                            <tr><td>Shipment Volume</td><td>${tonnage} t</td><td>Declared weight</td></tr>
+                            <tr><td>Transport & Compliance</td><td>${formatCurrency(transport)}</td><td>Shipping + permitting</td></tr>
+                            <tr><td><strong>Total Payable</strong></td><td><strong>${formatCurrency(totalPayable)}</strong></td><td>Net to supplier</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            document.getElementById('lfp-results').innerHTML = resultsHTML;
         }
         
         // ===== EVENT LISTENERS (replacing inline onclick) =====
@@ -2445,6 +2708,8 @@ function calculateUS1() {
                     if (calc === 'us1') calculateUS1();
                     else if (calc === 'us2') calculateUS2();
                     else if (calc === 'eu') calculateEU();
+                    else if (calc === 'wc') calculateWorkingCapital();
+                    else if (calc === 'lfp') calculateLFP();
                 });
             });
             
@@ -2563,6 +2828,75 @@ function calculateUS1() {
             });
             window.__validateComposition = validateComposition;
         })();
+        
+        // ===== AUTO-UPDATE WORKING CAPITAL FROM LAST CALCULATION =====
+        // Global object to store the latest calculated results
+        window.GreenLIB = {
+            lastRegion: null,          // 'US' or 'EU'
+            exportGross: 0,            // Export route gross product value per tonne
+            greenlibGross: 0,          // GreenLIB route gross product value per tonne
+            volume: 10000              // Annual throughput
+        };
+        
+        // Hook into the US calculation
+        function updateWorkingCapitalFromUS(exportGrossValue, greenlibGrossValue, volume) {
+            window.GreenLIB.lastRegion = 'US';
+            window.GreenLIB.exportGross = exportGrossValue;
+            window.GreenLIB.greenlibGross = greenlibGrossValue;
+            window.GreenLIB.volume = volume;
+            syncWorkingCapitalInputs();
+        }
+        
+        // Hook into the EU calculation
+        function updateWorkingCapitalFromEU(exportGrossValue, greenlibGrossValue, volume) {
+            window.GreenLIB.lastRegion = 'EU';
+            window.GreenLIB.exportGross = exportGrossValue;
+            window.GreenLIB.greenlibGross = greenlibGrossValue;
+            window.GreenLIB.volume = volume;
+            syncWorkingCapitalInputs();
+        }
+        
+        // Automatically push data into the Working Capital tab
+        function syncWorkingCapitalInputs() {
+            const region = window.GreenLIB.lastRegion;
+            if (!region) return;
+            
+            const exportRevenueInput = document.getElementById('wc-export-revenue');
+            const greenlibRevenueInput = document.getElementById('wc-greenlib-revenue');
+            const volumeInput = document.getElementById('wc-volume');
+            
+            // Compute annual revenues = gross $/t × annual volume
+            const exportRevenue = window.GreenLIB.exportGross * window.GreenLIB.volume;
+            const greenlibRevenue = window.GreenLIB.greenlibGross * window.GreenLIB.volume;
+            
+            exportRevenueInput.value = Math.round(exportRevenue);
+            greenlibRevenueInput.value = Math.round(greenlibRevenue);
+            volumeInput.value = window.GreenLIB.volume;
+            
+            // Add a subtle console message
+            console.log(`✅ Working Capital updated from ${region}:`, {
+                exportRevenue,
+                greenlibRevenue,
+                volume: window.GreenLIB.volume
+            });
+        }
+        
+        // Auto-trigger sync when opening the Working Capital tab
+        document.addEventListener('DOMContentLoaded', () => {
+            const wcTab = document.getElementById('tab-wc');
+            if (wcTab) {
+                wcTab.addEventListener('click', () => {
+                    syncWorkingCapitalInputs();
+                });
+            }
+            
+            // Set default summary text on page load if not already set
+            const summaryEl = document.getElementById('wc-summary');
+            if (summaryEl && !summaryEl.textContent.trim()) {
+                summaryEl.textContent =
+                    "Despite generating significantly higher annual revenue, GreenLIB's 3.2× faster cash cycle (26 vs 84 days) frees additional capital and reduces tied cash. That means less debt, more throughput, and higher return on equity.";
+            }
+        });
     </script>
 </body>
 </html>
